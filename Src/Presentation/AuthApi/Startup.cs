@@ -19,6 +19,7 @@ namespace AuthApi {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = SwaggerConstants.AuthenticationApi, Version = "v1" });
                 c.MapType<Guid>(() => new OpenApiSchema { Type = "string", Format = null });
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.ConfigureApplication();
             services.AddIdentityAuthorization(Configuration);
             services.AddPersistence(Configuration);

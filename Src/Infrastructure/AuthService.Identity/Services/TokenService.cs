@@ -4,6 +4,7 @@ using AuthService.Common.Responses;
 using AuthService.Domain.Entities;
 using AuthService.Identity.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -13,8 +14,8 @@ namespace AuthService.Identity.Services {
     public class TokenService : ITokenService {
         private readonly JwtSettings _jwtSettings;
         private readonly UserManager<ApplicationUser> _userManager;
-        public TokenService(JwtSettings jwtSettings, UserManager<ApplicationUser> userManager) {
-            _jwtSettings = jwtSettings;
+        public TokenService(IOptions<JwtSettings> jwtSettings, UserManager<ApplicationUser> userManager) {
+            _jwtSettings = jwtSettings.Value;
             _userManager = userManager;
         }
         public async Task<Response<AuthenticationResponse>> GenerateUserTokenAsync(ApplicationUser applicationUser) {
