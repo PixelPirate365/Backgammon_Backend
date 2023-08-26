@@ -1,4 +1,5 @@
-﻿using AuthService.Domain.Entities;
+﻿using AuthService.Application.Common.Interfaces.Repository;
+using AuthService.Domain.Entities;
 using AuthService.Identity.Models;
 using AuthService.Identity.Services;
 using AuthService.Persistence.Repositories;
@@ -13,20 +14,20 @@ namespace AuthService.Identity.Tests.Services {
         private readonly Mock<UserManager<ApplicationUser>> _userManager;
         private readonly IOptions<JwtSettings> _jwtSettings;
         private readonly TokenService _tokenService;
-        private readonly Mock<Repository<RefreshToken>> _refreshTokenRepository;
+        private readonly Mock<IRepository<RefreshToken>> _refreshTokenRepository;
         public TokenServiceTests() {
             _userManager = new Mock<UserManager<ApplicationUser>>(Mock.Of<IUserStore<ApplicationUser>>(), null, null, null, null, null, null, null, null);
             _jwtSettings = Options.Create(new JwtSettings {
                 Secret = "123123123124152312349214215342657fxgbXFsF32RASFSADF4R23",
                 TokenLifeTime = TimeSpan.FromMinutes(50)
             });
-            _refreshTokenRepository = new Mock<Repository<RefreshToken>>();
+            _refreshTokenRepository = new Mock<IRepository<RefreshToken>>();
             _tokenService = new TokenService(_jwtSettings!,  _refreshTokenRepository.Object);
         }
         [Fact]
         public async Task GenerateTokenAsync_Successfully() {
             //Arange
-            var user = new ApplicationUser { Id = "testId", UserName = "testUsername" };
+            var user = new ApplicationUser { Id = "testId", UserName = "testUsername", Email = "test@gmail.com" };
             var refreshToken = new RefreshToken {
                 JwtId = "cf0088d2-11b3-4530-b6f1-554fcdc0a774",
                 UserId = "c6f65059-b887-406a-b5bc-df58545b4a4c",
@@ -39,7 +40,7 @@ namespace AuthService.Identity.Tests.Services {
             var result = await _tokenService.GenerateUserTokenAsync(user);
 
             //Asert
-            Assert.NotNull(result);
+            Assert.True(result.Successful);
         }
     }
 }
