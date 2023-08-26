@@ -19,7 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Src\Core\AuthService.Domain\AuthService.Domain.csproj" />
     <ProjectReference Include="..\..\..\..\Src\Infrastructure\AuthService.Identity\AuthService.Identity.csproj" />
-    <ProjectReference Include="..\..\..\..\Src\Infrastructure\AuthService.Persistence\AuthService.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

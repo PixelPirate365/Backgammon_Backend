@@ -2,7 +2,6 @@
 using AuthService.Domain.Entities;
 using AuthService.Identity.Models;
 using AuthService.Identity.Services;
-using AuthService.Persistence.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -41,6 +40,28 @@ namespace AuthService.Identity.Tests.Services {
 
             //Asert
             Assert.True(result.Successful);
+        }
+        //[Fact]
+        //public async Task GenerateUserTokenAsync_Not_Successfully() {
+        //    //Arrange
+        //    RefreshToken token = new RefreshToken();
+        //    _refreshTokenRepository.Setup(x => () => x.Add(token)).ReturnsAsync(new Exception());
+        //    //Act
+        //    var result = async () => await _tokenService.GenerateUserTokenAsync(new ApplicationUser { Id = "testId", UserName = "testUsername" });
+        //    var exception = await Assert.ThrowsAsync<Exception>(result);
+        //    //Assert
+        //    Assert.NotNull(exception);
+        //}
+
+        [Fact]
+        public async Task GetClaimsPrincipalFromToken_Successfully() {
+            //Arange
+            var tokenValue = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJjNmY2NTA1OS1iODg3LTQwNmEtYjViYy1kZjU4NTQ1YjRhNGMiLCJlbWFpbCI6Im9yd3d3ZUBnbWFpbC5jb20iLCJqdGkiOiIxZjIwM2FmYy0xMTBjLTRhMzItYjY4NS02MzMwNjNkNGRhMDciLCJuYmYiOjE2OTMwODc5MDMsImV4cCI6MTY5MzA5MDkwMywiaWF0IjoxNjkzMDg3OTAzfQ.DXJzy2lQZoyjSEzpwHPnAVpS17mDys-QsBXq3PSzd5U";
+
+            //Act
+            var claimsPrincipal = _tokenService.GetClaimsPrincipalFromToken(tokenValue);
+            //Assert
+            Assert.NotNull(claimsPrincipal);
         }
     }
 }
