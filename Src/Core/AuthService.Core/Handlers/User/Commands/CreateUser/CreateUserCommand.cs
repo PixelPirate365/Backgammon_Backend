@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace AuthService.Application.Handlers.User.Commands.CreateUser {
     public class CreateUserCommand: IRequest<Response<AuthenticationResponse>> {
         public string? Email { get; set; }
+        public string? UserName { get; set; }
         public string? Password { get; set; }
     }
 }

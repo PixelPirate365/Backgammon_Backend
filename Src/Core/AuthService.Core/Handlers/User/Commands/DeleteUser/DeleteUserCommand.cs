@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AuthService.Common.Responses;
+using MediatR;
 
 namespace AuthService.Application.Handlers.User.Commands.DeleteUser {
-    internal class DeleteUserCommand {
+    public class DeleteUserCommand : IRequest<Response> {
+
     }
 }

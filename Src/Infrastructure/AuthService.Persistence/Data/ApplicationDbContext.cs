@@ -17,6 +17,8 @@ namespace AuthService.Persistence.Data {
             _currentUserService = currentUserService;
         }
         public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public virtual DbSet<RefreshToken> RefreshToken { get; set; }
+
         protected virtual bool IsSoftDeleteFilterEnabled => true;
 
         private static readonly MethodInfo ConfigureGlobalFiltersMethodInfo = 

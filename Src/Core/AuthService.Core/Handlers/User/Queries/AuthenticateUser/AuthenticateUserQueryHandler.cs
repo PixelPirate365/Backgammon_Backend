@@ -26,6 +26,13 @@ namespace AuthService.Application.Handlers.User.Queries.AuthenticateUser {
                     Message = ResponseMessageConstants.InvalidEmailPassword
                 };
             };
+            if (user.IsDeleted) {
+                _logger.LogError(ResponseMessageConstants.UserDeactivated);
+                return new Response<AuthenticationResponse> {
+                    Successful = false,
+                    Message = ResponseMessageConstants.UserDeactivated
+                };
+            }
             var passwordCheck = await _identityService.CheckPasswordAsync(user, request.Password);
             if (!passwordCheck)
                 return new Response<AuthenticationResponse> { Successful = false, Message = ResponseMessageConstants.InvalidEmailPassword };

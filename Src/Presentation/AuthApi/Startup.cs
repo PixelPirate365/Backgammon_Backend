@@ -13,17 +13,12 @@ namespace AuthApi {
         }
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers(options =>
-                options.Filters.Add<ApiExceptionFilterAttribute>());
-            services.AddSwaggerGen(c => {
-                c.AddServer(new OpenApiServer { Url = "" });
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = SwaggerConstants.AuthenticationApi, Version = "v1" });
-                c.MapType<Guid>(() => new OpenApiSchema { Type = "string", Format = null });
-            });
+                options.Filters.Add<ApiExceptionFilterAttribute>()); 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.ConfigureApplication();
             services.AddIdentityAuthorization(Configuration);
             services.AddPersistence(Configuration);
-
+            services.AddSwaggerExtension();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment()) {
@@ -32,9 +27,10 @@ namespace AuthApi {
             app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
             app.UseRouting();
-            app.UseSwaggerExtension(Configuration);
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSwaggerExtension(Configuration);
+
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });

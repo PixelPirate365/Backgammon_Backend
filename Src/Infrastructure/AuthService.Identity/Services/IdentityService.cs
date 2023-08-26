@@ -19,5 +19,6 @@ namespace AuthService.Identity.Services {
         public async Task<ApplicationUser> FindByEmailAsync(string email) => await _userManager.FindByEmailAsync(email);
 
         public async Task<ApplicationUser> FindByIdAsync(string id) => await _userManager.FindByIdAsync(id);
+
     }
 }

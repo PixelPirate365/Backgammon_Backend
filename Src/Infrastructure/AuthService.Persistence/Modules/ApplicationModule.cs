@@ -1,5 +1,8 @@
-﻿using AuthService.Domain.Entities;
+﻿using AuthService.Application.Common.Interfaces.Repository;
+using AuthService.Domain.Entities;
 using AuthService.Persistence.Data;
+using AuthService.Persistence.Repositories;
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +27,14 @@ namespace AuthService.Persistence.Modules {
             });
             services.AddIdentityCore<ApplicationUser>().AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            services.ResolveRepositories();
             return services;
         }
+        private static void ResolveRepositories(this IServiceCollection services) {
+            services.AddScoped<IRepository<RefreshToken>, Repository<RefreshToken>>();
+            services.AddScoped<IRepository<ApplicationUser>, Repository<ApplicationUser>>();
+
+        }
     }
+
 }
