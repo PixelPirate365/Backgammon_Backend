@@ -1,5 +1,4 @@
 ﻿using AuthService.Application.Common.Interfaces.Repository;
-using AuthService.Application.Handlers.User.Commands.CreateUser;
 using AuthService.Application.Interfaces;
 using AuthService.Common.Constants;
 using AuthService.Common.Responses;
@@ -26,6 +25,12 @@ namespace AuthService.Application.Handlers.User.Commands.DeleteUser {
             _logger.LogInformation($"{nameof(Handle)} method running in Handler: {nameof(DeleteUserCommandHandler)}");
             var userId = _currentUserService.UserId;
             var user = await _identityService.FindByIdAsync(userId);
+            if (user == null) {
+                return new Response() {
+                    Successful = false,
+                    Message = ResponseMessageConstants.UserNotFound
+                };
+            };
             await _repository.Delete(user);
             _logger.LogInformation($"{nameof(Handle)} method completed in Handler: {nameof(DeleteUserCommandHandler)}");
             return new Response() {
