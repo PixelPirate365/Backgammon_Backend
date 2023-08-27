@@ -77,7 +77,8 @@ namespace AuthService.Application.Tests.Handlers.User.Queries.AuthenticateUser {
             var result = await _queryHandler.Handle(query, new CancellationToken());
             //Asert
             _logger.VerifyLog(logger => logger.LogInformation(It.IsAny<string>()), Times.Exactly(1));
-            Assert.Null(result);
-            Assert.False(result.Successful);        }
+            Assert.NotNull(result);
+            Assert.False(result.Successful);     
+        }
     }
 }
