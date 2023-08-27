@@ -10,5 +10,6 @@ namespace AuthService.Application.Mappings {
         public static Profile UserMappingProfile() {
             return new UserMappingProfile();
         }
+        
     }
 }

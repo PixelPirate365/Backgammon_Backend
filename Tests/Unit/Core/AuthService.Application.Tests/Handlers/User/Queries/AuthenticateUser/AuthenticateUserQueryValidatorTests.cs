@@ -36,6 +36,7 @@ namespace AuthService.Application.Tests.Handlers.User.Queries.AuthenticateUser {
             //Act
             var result = _queryValidator.TestValidate(query);
             //Assert
+
             Assert.False(result.IsValid);
             Assert.True(result.Errors.Count > 0);
         }
