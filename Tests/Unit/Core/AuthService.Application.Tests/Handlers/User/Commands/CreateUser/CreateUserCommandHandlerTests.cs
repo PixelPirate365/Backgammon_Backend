@@ -38,11 +38,6 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.CreateUser {
                 UserName = "TestUser",
                 Password = "Test123123"
             };
-            var testUser = new ApplicationUser {
-                Id = "8bcaff90-0af2-4772-a393-cba1c08f5249",
-                Email = "test@gmail.com",
-                UserName = "TestUser"
-            };
             var response = new Response<AuthenticationResponse> {
                 Successful = true,
                 Result = new AuthenticationResponse {
@@ -61,6 +56,26 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.CreateUser {
             Assert.NotNull(result);
             Assert.True(result.Successful);
             Assert.Equal(result.Result.Email, command.Email);
+        }
+        [Fact]
+        public async Task CreateUserCommandHandler_Unsuccessfully() {
+            //Arange
+            var command = new CreateUserCommand {
+                Email = "test@gmail.com",
+                UserName = "TestUser",
+                Password = "Test123123"
+            };
+            var response = new Response<AuthenticationResponse> {
+                Successful = false,
+                Result = null
+            };
+            _identityService.Setup(x => x.CreateUserAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>())).ReturnsAsync(IdentityResult.Failed());
+            //Act
+            var result = await _commandHandler.Handle(command, new CancellationToken());
+            //Assert
+            _logger.VerifyLog(logger => logger.LogInformation(It.IsAny<string>()), Times.Exactly(1));
+            Assert.NotNull(result);
+            Assert.False(result.Successful);
         }
     }
 }

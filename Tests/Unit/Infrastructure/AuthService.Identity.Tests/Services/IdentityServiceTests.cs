@@ -26,7 +26,7 @@ namespace AuthService.Identity.Tests.Services {
             Assert.True(result.Succeeded);
         }
         [Fact]
-        public async Task CreateUserAsync_Not_Successfully() {
+        public async Task CreateUserAsync_Unsuccessfully() {
             //Arrange
             var user = new ApplicationUser() {
                 Email = "orher365@gmail.com",
@@ -53,7 +53,7 @@ namespace AuthService.Identity.Tests.Services {
             Assert.NotNull(result);
         }
         [Fact]
-        public async Task FindByEmailAsync_Not_Successfully() {
+        public async Task FindByEmailAsync_Unsuccessfully() {
             //Arrange
             var fakeEmail = "orwwwghhe@gmail.com";
             _userManager.Setup(x => x.FindByEmailAsync(fakeEmail)).ReturnsAsync(new ApplicationUser());
@@ -78,7 +78,7 @@ namespace AuthService.Identity.Tests.Services {
             Assert.True(result.Succeeded);
         }
         [Fact]
-        public async Task ChangePasswordAsync_NotSuccessfully() {
+        public async Task ChangePasswordAsync_Unsuccessfully() {
             //Arrange
             var user = new ApplicationUser {
                 Email = "orwwwwe@gmail.com",
@@ -107,7 +107,7 @@ namespace AuthService.Identity.Tests.Services {
             Assert.True(result);
         }
         [Fact]
-        public async Task CheckPasswordAsync_NotSuccessfully() {
+        public async Task CheckPasswordAsync_Unsuccessfully() {
             //Arrange
             var user = new ApplicationUser {
                 Email = "orwwwwe@gmail.com",
@@ -135,7 +135,7 @@ namespace AuthService.Identity.Tests.Services {
             Assert.NotNull(result);
         }
         [Fact]
-        public async Task FindByIdAsync_NotSuccessfully() {
+        public async Task FindByIdAsync_Unsuccessfully() {
             //Arrange
             var user = new ApplicationUser();
 
