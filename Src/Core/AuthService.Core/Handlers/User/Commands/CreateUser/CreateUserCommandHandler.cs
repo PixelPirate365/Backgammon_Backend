@@ -1,15 +1,13 @@
-﻿using AuthService.Application.Handlers.User.Commands.ChangeUserPassword;
-using AuthService.Application.Handlers.User.Queries.AuthenticateUser;
-using AuthService.Application.Interfaces;
+﻿using AuthService.Application.Interfaces;
 using AuthService.Common.Constants;
 using AuthService.Common.Responses;
 using AuthService.Domain.Entities;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System.Reflection;
 
-namespace AuthService.Application.Handlers.User.Commands.CreateUser {
+namespace AuthService.Application.Handlers.User.Commands.CreateUser
+{
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Response<AuthenticationResponse>> {
         private readonly IIdentityService _identityService;
         private readonly ITokenService _tokenService;

@@ -52,8 +52,8 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.CreateUser {
                     RefreshToken = "B59DBA80-7AC4-42A9-0342-08DBA603F143"
                 }
             };
-            _identityService.Setup(x => x.CreateUserAsync(testUser, command.Password)).ReturnsAsync(IdentityResult.Success);
-            _tokenService.Setup(x => x.GenerateUserTokenAsync(testUser)).ReturnsAsync(response);
+            _identityService.Setup(x => x.CreateUserAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>())).ReturnsAsync(IdentityResult.Success);
+            _tokenService.Setup(x => x.GenerateUserTokenAsync(It.IsAny<ApplicationUser>())).ReturnsAsync(response);
             //Act
             var result = await _commandHandler.Handle(command, new CancellationToken());
             //Assert
