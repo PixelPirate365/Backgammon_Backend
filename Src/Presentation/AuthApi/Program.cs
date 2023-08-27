@@ -42,7 +42,6 @@ namespace AuthApi {
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(config)
                 .CreateLogger();
-
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
@@ -50,7 +49,10 @@ namespace AuthApi {
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     if (context.Database.IsSqlServer()) {
                         await context.Database.MigrateAsync();
+
                     }
+
+                    logger.LogInformation("Host created.");
                 }
                 catch (Exception ex) {
                 }
