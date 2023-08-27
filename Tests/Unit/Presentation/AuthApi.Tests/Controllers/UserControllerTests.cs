@@ -51,8 +51,9 @@ namespace AuthApi.Tests.Controllers {
             Assert.IsType<OkObjectResult>(result.Result);
         }
         [Fact]
-        public async Task Delete_Successfully() {
-            //Act
+        public async Task DeleteUser_Successfully() {
+
+            //Arrange
             var result = await _controller.DeleteUser();
             //Assert
             Assert.IsType<OkObjectResult>(result.Result);
@@ -98,8 +99,10 @@ namespace AuthApi.Tests.Controllers {
         }
         [Fact]
         public async Task DeleteUser_Unsuccessfully() {
+            //Arrange
+            _mediator.Setup(x => x.Send(It.IsAny<DeleteUserCommand>(), It.IsAny<CancellationToken>())).Throws(new Exception());
             //Act
-            var result = async () => await _controller.DeleteUser();
+            var result = async()=> await _controller.DeleteUser();
             //Assert
             var exception = await Assert.ThrowsAsync<Exception>(result);
             Assert.NotNull(exception);
