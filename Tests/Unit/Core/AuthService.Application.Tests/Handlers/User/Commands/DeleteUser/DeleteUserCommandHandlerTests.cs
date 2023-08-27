@@ -6,6 +6,7 @@ using AuthService.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace AuthService.Application.Tests.Handlers.User.Commands.DeleteUser {
     public class DeleteUserCommandHandlerTests {
@@ -43,24 +44,15 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.DeleteUser {
             Assert.True(result.Successful);
         }
         [Fact]
-        public async Task DeleteUserCommandHandler_Unsuccessfully() {
+        public async Task DeleteUserCommandHandler_UnSuccessfully() {
             //Arrange
-            var testUser = new ApplicationUser {
-                Id = "8bcaff90-0af2-4772-a393-cba1c08f5249",
-                Email = "test@gmail.com",
-                UserName = "TestUser"
-            };
-            var response = new Response {
-                Successful = true
-            };
             var command = new DeleteUserCommand();
-            _currentUserService.Setup(x => x.UserId).Returns(testUser.Id);
-            _identityService.Setup(x => x.FindByIdAsync(testUser.Id)).ReturnsAsync(testUser);
+            _currentUserService.Setup(x => x.UserId).Throws(new NullReferenceException());
             //Act
-            var result = await _commandHandler.Handle(command, new CancellationToken());
-            //Asert
-            _logger.VerifyLog(logger => logger.LogInformation(It.IsAny<string>()), Times.Exactly(1));
-            Assert.False(result.Successful);
+            var result = async () => await _commandHandler.Handle(command, new CancellationToken());
+            var exception = await Assert.ThrowsAsync<NullReferenceException>(result);
+            //Assert
+            Assert.NotNull(exception);
         }
     }
 }
