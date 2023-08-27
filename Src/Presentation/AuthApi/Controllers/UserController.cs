@@ -23,7 +23,7 @@ namespace AuthApi.Controllers {
         }
 
         [HttpPost(nameof(ChangePassword))]
-        public async Task<ActionResult<Response>> ChangePassword([FromBody] ChangePasswordCommand command) {
+        public async Task<ActionResult<Response>> ChangePassword([FromBody] ChangeUserPasswordCommand command) {
             var result = await _mediator.Send(command);
             return Ok(result);
         }

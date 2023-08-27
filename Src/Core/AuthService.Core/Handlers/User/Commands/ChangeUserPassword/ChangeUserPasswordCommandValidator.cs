@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 
 namespace AuthService.Application.Handlers.User.Commands.ChangeUserPassword {
-    public class ChangePasswordCommandValidator : AbstractValidator<ChangePasswordCommand> {
-        public ChangePasswordCommandValidator()
+    public class ChangeUserPasswordCommandValidator : AbstractValidator<ChangeUserPasswordCommand> {
+        public ChangeUserPasswordCommandValidator()
         {
             RuleFor(x => x.CurrentPassword).NotEmpty()
                 .MinimumLength(8);

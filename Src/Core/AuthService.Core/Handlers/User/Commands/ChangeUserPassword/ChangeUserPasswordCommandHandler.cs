@@ -7,20 +7,20 @@ using Microsoft.Extensions.Logging;
 using System.Reflection;
 
 namespace AuthService.Application.Handlers.User.Commands.ChangeUserPassword {
-    public class ChangePasswordCommandHandler : IRequestHandler<ChangePasswordCommand, Response> {
-        private readonly ILogger<ChangePasswordCommandHandler> _logger;
+    public class ChangeUserPasswordCommandHandler : IRequestHandler<ChangeUserPasswordCommand, Response> {
+        private readonly ILogger<ChangeUserPasswordCommandHandler> _logger;
         private readonly IIdentityService _identityService;
         private readonly ICurrentUserService _currentUserService;
-        public ChangePasswordCommandHandler(IIdentityService identityService,
-            ILogger<ChangePasswordCommandHandler> logger,
+        public ChangeUserPasswordCommandHandler(IIdentityService identityService,
+            ILogger<ChangeUserPasswordCommandHandler> logger,
             ICurrentUserService currentUserService) {
             _identityService = identityService; 
             _logger = logger;
             _currentUserService = currentUserService;
         }
 
-        public async Task<Response> Handle(ChangePasswordCommand request, CancellationToken cancellationToken) {
-            _logger.LogInformation($"{nameof(Handle)} method running in Handler: {nameof(ChangePasswordCommandHandler)}");
+        public async Task<Response> Handle(ChangeUserPasswordCommand request, CancellationToken cancellationToken) {
+            _logger.LogInformation($"{nameof(Handle)} method running in Handler: {nameof(ChangeUserPasswordCommandHandler)}");
             var user = await _identityService.FindByIdAsync(_currentUserService.UserId.ToString());
             if (user == null) {
                 _logger.LogError(ResponseMessageConstants.UserNotFound);
@@ -47,7 +47,7 @@ namespace AuthService.Application.Handlers.User.Commands.ChangeUserPassword {
                     Message = ResponseMessageConstants.UnableToChangePassword
                 };
             }
-            _logger.LogInformation($"{nameof(Handle)} method completed in Handler: {nameof(ChangePasswordCommandHandler)}");
+            _logger.LogInformation($"{nameof(Handle)} method completed in Handler: {nameof(ChangeUserPasswordCommandHandler)}");
             return new Response {
                 Successful = true,
                 Message = ResponseMessageConstants.PasswordChangedSuccessfully

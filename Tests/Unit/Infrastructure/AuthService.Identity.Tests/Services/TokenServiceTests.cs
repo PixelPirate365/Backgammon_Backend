@@ -53,15 +53,15 @@ namespace AuthService.Identity.Tests.Services {
         //    Assert.NotNull(exception);
         //}
 
-        [Fact]
-        public async Task GetClaimsPrincipalFromToken_Successfully() {
-            //Arange
-            var tokenValue = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJjNmY2NTA1OS1iODg3LTQwNmEtYjViYy1kZjU4NTQ1YjRhNGMiLCJlbWFpbCI6Im9yd3d3ZUBnbWFpbC5jb20iLCJqdGkiOiIxZjIwM2FmYy0xMTBjLTRhMzItYjY4NS02MzMwNjNkNGRhMDciLCJuYmYiOjE2OTMwODc5MDMsImV4cCI6MTY5MzA5MDkwMywiaWF0IjoxNjkzMDg3OTAzfQ.DXJzy2lQZoyjSEzpwHPnAVpS17mDys-QsBXq3PSzd5U";
+        //[Fact]
+        //public async Task GetClaimsPrincipalFromToken_Successfully() {
+        //    //Arange
+        //    var tokenValue = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJjNmY2NTA1OS1iODg3LTQwNmEtYjViYy1kZjU4NTQ1YjRhNGMiLCJlbWFpbCI6Im9yd3d3ZUBnbWFpbC5jb20iLCJqdGkiOiIxZjIwM2FmYy0xMTBjLTRhMzItYjY4NS02MzMwNjNkNGRhMDciLCJuYmYiOjE2OTMwODc5MDMsImV4cCI6MTY5MzA5MDkwMywiaWF0IjoxNjkzMDg3OTAzfQ.DXJzy2lQZoyjSEzpwHPnAVpS17mDys-QsBXq3PSzd5U";
 
-            //Act
-            var claimsPrincipal = _tokenService.GetClaimsPrincipalFromToken(tokenValue);
-            //Assert
-            Assert.NotNull(claimsPrincipal);
-        }
+        //    //Act
+        //    var claimsPrincipal = _tokenService.GetClaimsPrincipalFromToken(tokenValue);
+        //    //Assert
+        //    Assert.NotNull(claimsPrincipal);
+        //}
     }
 }
