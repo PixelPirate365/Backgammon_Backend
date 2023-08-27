@@ -1,5 +1,7 @@
 
+using AuthService.Domain.Entities;
 using AuthService.Persistence.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -24,9 +26,9 @@ namespace AuthApi {
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     if (context.Database.IsSqlServer()) {
                         await context.Database.MigrateAsync();
-
                     }
-
+                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                    await ApplicationDbContextSeed.ApplicationDataSeed(context, userManager);
                     logger.LogInformation("Host created.");
                 }
                 catch (Exception ex) {
