@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AuthService.Application.Tests.Handlers.User.Commands.RefreshUserToken {
-    internal class RefreshUserTokenCommandHandlerTests {
+    public class RefreshUserTokenCommandHandlerTests {
     }
 }
