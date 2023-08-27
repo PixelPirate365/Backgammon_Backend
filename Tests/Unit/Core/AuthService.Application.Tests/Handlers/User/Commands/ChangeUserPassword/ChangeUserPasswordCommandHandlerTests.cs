@@ -42,6 +42,7 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.ChangeUserPasswor
             var response = new Response {
                 Successful = true,
             };
+            _currentUserService.Setup(x => x.UserId).Returns(testUser.Id);
             _identityService.Setup(x => x.FindByIdAsync(testUser.Id)).ReturnsAsync(testUser);
             _identityService.Setup(x => x.CheckPasswordAsync(testUser, command.CurrentPassword)).ReturnsAsync(true);
             _identityService.Setup(x => x.ChangePasswordAsync(testUser, command.CurrentPassword, command.NewPassword)).ReturnsAsync(IdentityResult.Success);
