@@ -1,14 +1,9 @@
 ﻿using AuthService.Application.Handlers.User.Commands.RefreshUserToken;
-using AuthService.Application.Handlers.User.Queries.AuthenticateUser;
 using FluentValidation.TestHelper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace AuthService.Application.Tests.Handlers.User.Commands.RefreshUserToken {
+namespace AuthService.Application.Tests.Handlers.User.Commands.RefreshUserToken
+{
     public class RefreshUserTokenCommandValidatorTests {
         private readonly RefreshUserTokenCommandValidator _commandValidator;
         public RefreshUserTokenCommandValidatorTests()

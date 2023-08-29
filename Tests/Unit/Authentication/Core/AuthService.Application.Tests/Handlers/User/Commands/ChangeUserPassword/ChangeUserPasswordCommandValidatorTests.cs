@@ -1,14 +1,9 @@
 ﻿using AuthService.Application.Handlers.User.Commands.ChangeUserPassword;
-using AuthService.Application.Handlers.User.Commands.CreateUser;
 using FluentValidation.TestHelper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace AuthService.Application.Tests.Handlers.User.Commands.ChangeUserPassword {
+namespace AuthService.Application.Tests.Handlers.User.Commands.ChangeUserPassword
+{
     public class ChangeUserPasswordCommandValidatorTests {
         readonly ChangeUserPasswordCommandValidator _commandValidator;
         public ChangeUserPasswordCommandValidatorTests()
@@ -20,9 +15,9 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.ChangeUserPasswor
             //Arrange        
 
             var command = new ChangeUserPasswordCommand() {
-                CurrentPassword = "Test123123",
-                NewPassword = "Test321321",
-                ConfirmNewPassword = "Test321321"
+                CurrentPassword = "Test1231",
+                NewPassword = "Test3213",
+                ConfirmNewPassword = "Test3213"
             };
             //Act
             var result = _commandValidator.TestValidate(command);

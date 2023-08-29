@@ -1,13 +1,9 @@
 ﻿using AuthService.Application.Handlers.User.Queries.AuthenticateUser;
 using FluentValidation.TestHelper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace AuthService.Application.Tests.Handlers.User.Queries.AuthenticateUser {
+namespace AuthService.Application.Tests.Handlers.User.Queries.AuthenticateUser
+{
     public class AuthenticateUserQueryValidatorTests {
         private readonly AuthenticateUserQueryValidator _queryValidator;
         public AuthenticateUserQueryValidatorTests()

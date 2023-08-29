@@ -6,9 +6,9 @@ using AuthService.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace AuthService.Application.Tests.Handlers.User.Commands.DeleteUser {
+namespace AuthService.Application.Tests.Handlers.User.Commands.DeleteUser
+{
     public class DeleteUserCommandHandlerTests {
         readonly Mock<IIdentityService> _identityService;
         readonly Mock<ICurrentUserService> _currentUserService;

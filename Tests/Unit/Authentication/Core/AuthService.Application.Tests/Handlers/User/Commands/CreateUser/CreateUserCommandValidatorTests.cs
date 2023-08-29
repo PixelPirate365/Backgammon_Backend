@@ -1,14 +1,9 @@
 ﻿using AuthService.Application.Handlers.User.Commands.CreateUser;
-using AuthService.Application.Handlers.User.Commands.RefreshUserToken;
 using FluentValidation.TestHelper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace AuthService.Application.Tests.Handlers.User.Commands.CreateUser {
+namespace AuthService.Application.Tests.Handlers.User.Commands.CreateUser
+{
     public class CreateUserCommandValidatorTests {
         readonly CreateUserCommandValidator _commandValidator;
         public CreateUserCommandValidatorTests()
@@ -22,7 +17,7 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.CreateUser {
             var command = new CreateUserCommand() {
             Email="test@gmail.com",
             UserName="TestUser",
-            Password="Test123123"
+            Password="Test1231"
             };
             //Act
             var result = _commandValidator.TestValidate(command);

@@ -1,20 +1,14 @@
 ﻿using AuthService.Application.Handlers.User.Commands.ChangeUserPassword;
-using AuthService.Application.Handlers.User.Queries.AuthenticateUser;
 using AuthService.Application.Interfaces;
 using AuthService.Common.Responses;
 using AuthService.Domain.Entities;
-using Castle.Core.Logging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace AuthService.Application.Tests.Handlers.User.Commands.ChangeUserPassword {
+namespace AuthService.Application.Tests.Handlers.User.Commands.ChangeUserPassword
+{
     public class ChangeUserPasswordCommandHandlerTests {
         readonly Mock<IIdentityService> _identityService;
         readonly Mock<ICurrentUserService> _currentUserService;

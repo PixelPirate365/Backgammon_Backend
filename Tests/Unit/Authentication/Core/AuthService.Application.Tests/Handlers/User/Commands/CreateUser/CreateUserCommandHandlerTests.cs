@@ -1,5 +1,4 @@
-﻿using AuthService.Application.Handlers.User.Commands.ChangeUserPassword;
-using AuthService.Application.Handlers.User.Commands.CreateUser;
+﻿using AuthService.Application.Handlers.User.Commands.CreateUser;
 using AuthService.Application.Interfaces;
 using AuthService.Application.Mappings;
 using AuthService.Common.Responses;
@@ -8,14 +7,10 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace AuthService.Application.Tests.Handlers.User.Commands.CreateUser {
+namespace AuthService.Application.Tests.Handlers.User.Commands.CreateUser
+{
     public class CreateUserCommandHandlerTests {
         readonly Mock<IIdentityService> _identityService;
         readonly Mock<ITokenService> _tokenService;
