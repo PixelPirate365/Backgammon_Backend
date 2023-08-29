@@ -1,20 +1,17 @@
-﻿using AuthService.Application.Handlers.User.Queries.AuthenticateUser;
+﻿using AuthService.Application.Common.Constants;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AuthService.Application.Handlers.User.Commands.CreateUser {
     public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand> {
 
-        public CreateUserCommandValidator()
-        {
+        public CreateUserCommandValidator() {
             RuleFor(x => x.Email).NotEmpty().EmailAddress();
-            RuleFor(x => x.UserName).NotEmpty().MinimumLength(3);
+            RuleFor(x => x.UserName).NotEmpty()
+                .MinimumLength(ValidationConstants.MinimumUserNameLength)
+                .MaximumLength(ValidationConstants.MaximumUserNameLength);
             RuleFor(x => x.Password).NotEmpty()
-                .MinimumLength(8); //hard coded
+                .MinimumLength(ValidationConstants.MinimumPasswordLength)
+                .MaximumLength(ValidationConstants.MinimumPasswordLength);
         }
     }
 }
