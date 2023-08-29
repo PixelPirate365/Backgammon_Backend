@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthService.Identity.Expressions {
+namespace AccountService.Persistence.Expressions {
     public static class ExpressionCombiner {
         public static Expression<Func<T, bool>> Combine<T>(Expression<Func<T, bool>> expression1, Expression<Func<T, bool>> expression2) {
             if (expression1 == null && expression2 == null) {
@@ -25,14 +25,8 @@ namespace AuthService.Identity.Expressions {
             var leftVisitor = new ReplaceExpressionVisitor(expression1.Parameters[0], parameter);
             var left = leftVisitor.Visit(expression1.Body);
 
-
-
-
             var rightVisitor = new ReplaceExpressionVisitor(expression2.Parameters[0], parameter);
             var right = rightVisitor.Visit(expression2.Body);
-
-
-
 
             return Expression.Lambda<Func<T, bool>>(Expression.AndAlso(left, right), parameter);
         }
@@ -42,23 +36,14 @@ namespace AuthService.Identity.Expressions {
         private readonly Expression _oldValue;
         private readonly Expression _newValue;
 
-
         public ReplaceExpressionVisitor(Expression oldValue, Expression newValue) {
             _oldValue = oldValue;
             _newValue = newValue;
         }
-
-
-
-
         public override Expression Visit(Expression node) {
             if (node == _oldValue) {
                 return _newValue;
             }
-
-
-
-
             return base.Visit(node);
         }
     }

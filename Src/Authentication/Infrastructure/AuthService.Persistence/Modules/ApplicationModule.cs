@@ -2,7 +2,6 @@
 using AuthService.Domain.Entities;
 using AuthService.Persistence.Data;
 using AuthService.Persistence.Repositories;
-using FluentAssertions.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

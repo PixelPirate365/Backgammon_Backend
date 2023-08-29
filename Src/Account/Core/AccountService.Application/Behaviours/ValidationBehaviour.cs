@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
+using ValidationException = AccountService.Application.Exceptions.ValidationException;
 using MediatR;
-using ValidationException = AuthService.Application.Exceptions.ValidationException;
-namespace AuthService.Application.Behaviours {
+
+namespace AccountService.Application.Behaviours {
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-       where TRequest : IRequest<TResponse> {
+      where TRequest : IRequest<TResponse> {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
         public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators) {

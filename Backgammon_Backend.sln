@@ -11,23 +11,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9B88C3D7-2E57-43FD-B86D-D690C946346A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Identity", "Src\Authentication\Infrastructure\AuthService.Identity\AuthService.Identity.csproj", "{E0F1BF19-72C1-4B78-879E-EB0CE612CCC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Identity", "Src\Authentication\Infrastructure\AuthService.Identity\AuthService.Identity.csproj", "{E0F1BF19-72C1-4B78-879E-EB0CE612CCC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Persistence", "Src\Authentication\Infrastructure\AuthService.Persistence\AuthService.Persistence.csproj", "{E7D681FC-76EE-497F-A489-8EDD1A4E8E8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Persistence", "Src\Authentication\Infrastructure\AuthService.Persistence\AuthService.Persistence.csproj", "{E7D681FC-76EE-497F-A489-8EDD1A4E8E8D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5B9A5022-9762-49BD-855D-30A442B13F99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Application", "Src\Authentication\Core\AuthService.Application\AuthService.Application.csproj", "{1450A4AE-35AE-4339-8473-F754DC637878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Application", "Src\Authentication\Core\AuthService.Application\AuthService.Application.csproj", "{1450A4AE-35AE-4339-8473-F754DC637878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Domain", "Src\Authentication\Core\AuthService.Domain\AuthService.Domain.csproj", "{191A81F8-D02C-4056-A0E7-A44E93D4908D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Domain", "Src\Authentication\Core\AuthService.Domain\AuthService.Domain.csproj", "{191A81F8-D02C-4056-A0E7-A44E93D4908D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{D2127F98-C117-4379-87B4-D31184228713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApi.Common", "Src\Authentication\Common\AuthApi.Common\AuthApi.Common.csproj", "{AB26A4D5-665E-4029-A527-D0F17200E561}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthApi.Common", "Src\Authentication\Common\AuthApi.Common\AuthApi.Common.csproj", "{AB26A4D5-665E-4029-A527-D0F17200E561}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{A1A82C10-D8EF-461E-9988-EC56AE002593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApi", "Src\Authentication\Presentation\AuthApi\AuthApi.csproj", "{697A4C79-C799-4E3B-A9C0-59B2F906234C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthApi", "Src\Authentication\Presentation\AuthApi\AuthApi.csproj", "{697A4C79-C799-4E3B-A9C0-59B2F906234C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{F22AB961-F577-4F87-9423-13F10B1E207B}"
 EndProject
@@ -41,15 +41,53 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{7392C902-F0F5-493E-BF06-73DBA811DFF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Common.Tests", "Tests\Unit\Authentication\Common\AuthService.Common.Tests\AuthService.Common.Tests.csproj", "{D8DFD385-707D-4C09-AAC5-6AB863B01DF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Common.Tests", "Tests\Unit\Authentication\Common\AuthService.Common.Tests\AuthService.Common.Tests.csproj", "{D8DFD385-707D-4C09-AAC5-6AB863B01DF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Application.Tests", "Tests\Unit\Authentication\Core\AuthService.Application.Tests\AuthService.Application.Tests.csproj", "{93DB87A5-CE21-4379-8B0D-9D6BEBE97C50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Application.Tests", "Tests\Unit\Authentication\Core\AuthService.Application.Tests\AuthService.Application.Tests.csproj", "{93DB87A5-CE21-4379-8B0D-9D6BEBE97C50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Identity.Tests", "Tests\Unit\Authentication\Infrastructure\AuthService.Identity.Tests\AuthService.Identity.Tests.csproj", "{5AABC525-475E-4B47-A8E9-477E64E6DEE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Identity.Tests", "Tests\Unit\Authentication\Infrastructure\AuthService.Identity.Tests\AuthService.Identity.Tests.csproj", "{5AABC525-475E-4B47-A8E9-477E64E6DEE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.Persistence.Tests", "Tests\Unit\Authentication\Infrastructure\AuthService.Persistence.Tests\AuthService.Persistence.Tests.csproj", "{EF4F6481-BC50-44F8-A463-273919D5B073}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Persistence.Tests", "Tests\Unit\Authentication\Infrastructure\AuthService.Persistence.Tests\AuthService.Persistence.Tests.csproj", "{EF4F6481-BC50-44F8-A463-273919D5B073}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApi.Tests", "Tests\Unit\Authentication\Presentation\AuthApi.Tests\AuthApi.Tests.csproj", "{F1D801C9-8DA4-4D4E-98B2-44E99FD979A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthApi.Tests", "Tests\Unit\Authentication\Presentation\AuthApi.Tests\AuthApi.Tests.csproj", "{F1D801C9-8DA4-4D4E-98B2-44E99FD979A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{4BC71B9A-4C98-43CC-ABE3-503763FC4FEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{FDB37DF3-FD13-425F-8BBF-FF23023FCA81}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{809D7793-A89E-402D-A7EF-516D72469CBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9A34E001-6863-408A-9A29-76C0791BDC69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1D03C10B-BEF7-4164-B8E9-70CDD0170200}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{CB990E59-C496-4ED1-BC0F-8477DE7D18A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{D5BE75F5-F571-4347-8E59-03726350F333}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C60827AD-B7A2-4D2A-BC08-65EE71474F07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{AAEFFC57-C1A5-4225-AAA3-6D67D1A835C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C61B2FA5-F39D-4D7B-A3CF-0229F1559FE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Common", "Src\Account\Common\AccountService.Common\AccountService.Common.csproj", "{25616C87-8A1F-4F57-807F-AABC42E10401}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Application", "Src\Account\Core\AccountService.Application\AccountService.Application.csproj", "{7B3F692B-5B3C-43C2-A15C-3E1A8151C74E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Domain", "Src\Account\Core\AccountService.Domain\AccountService.Domain.csproj", "{60668212-FFA8-4F39-8434-8FC1218ED997}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountApi", "Src\Account\Presentation\AccountApi\AccountApi.csproj", "{B652DDC9-7FA5-46F8-A2E9-A91FB3784060}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Persistence", "Src\Account\Infrastructure\AccountService.Persistence\AccountService.Persistence.csproj", "{6168A528-A283-421F-91E5-8E984F5F1E18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Common.Tests", "Tests\Unit\Account\Common\AccountService.Common.Tests\AccountService.Common.Tests.csproj", "{A29C2A97-8311-4EE1-8D18-295DC8F376D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Application.Tests", "Tests\Unit\Account\Core\AccountService.Application.Tests\AccountService.Application.Tests.csproj", "{FAC2D130-0FE9-467C-A117-0D5A85F66800}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Persistence.Tests", "Tests\Unit\Account\Infrastructure\AccountService.Persistence.Tests\AccountService.Persistence.Tests.csproj", "{AC65716A-D084-48E2-AD6E-5D6F35C66A03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApi.Tests", "Tests\Unit\Account\Presentation\AuthApi.Tests\AuthApi.Tests.csproj", "{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +139,42 @@ Global
 		{F1D801C9-8DA4-4D4E-98B2-44E99FD979A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D801C9-8DA4-4D4E-98B2-44E99FD979A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D801C9-8DA4-4D4E-98B2-44E99FD979A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25616C87-8A1F-4F57-807F-AABC42E10401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25616C87-8A1F-4F57-807F-AABC42E10401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25616C87-8A1F-4F57-807F-AABC42E10401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25616C87-8A1F-4F57-807F-AABC42E10401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B3F692B-5B3C-43C2-A15C-3E1A8151C74E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3F692B-5B3C-43C2-A15C-3E1A8151C74E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3F692B-5B3C-43C2-A15C-3E1A8151C74E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3F692B-5B3C-43C2-A15C-3E1A8151C74E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60668212-FFA8-4F39-8434-8FC1218ED997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60668212-FFA8-4F39-8434-8FC1218ED997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60668212-FFA8-4F39-8434-8FC1218ED997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60668212-FFA8-4F39-8434-8FC1218ED997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B652DDC9-7FA5-46F8-A2E9-A91FB3784060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B652DDC9-7FA5-46F8-A2E9-A91FB3784060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B652DDC9-7FA5-46F8-A2E9-A91FB3784060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B652DDC9-7FA5-46F8-A2E9-A91FB3784060}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6168A528-A283-421F-91E5-8E984F5F1E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6168A528-A283-421F-91E5-8E984F5F1E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6168A528-A283-421F-91E5-8E984F5F1E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6168A528-A283-421F-91E5-8E984F5F1E18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A29C2A97-8311-4EE1-8D18-295DC8F376D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A29C2A97-8311-4EE1-8D18-295DC8F376D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A29C2A97-8311-4EE1-8D18-295DC8F376D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A29C2A97-8311-4EE1-8D18-295DC8F376D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC2D130-0FE9-467C-A117-0D5A85F66800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC2D130-0FE9-467C-A117-0D5A85F66800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC2D130-0FE9-467C-A117-0D5A85F66800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC2D130-0FE9-467C-A117-0D5A85F66800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC65716A-D084-48E2-AD6E-5D6F35C66A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC65716A-D084-48E2-AD6E-5D6F35C66A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC65716A-D084-48E2-AD6E-5D6F35C66A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC65716A-D084-48E2-AD6E-5D6F35C66A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +202,25 @@ Global
 		{5AABC525-475E-4B47-A8E9-477E64E6DEE4} = {453F322A-A644-4B35-8410-3936E7A87D0E}
 		{EF4F6481-BC50-44F8-A463-273919D5B073} = {453F322A-A644-4B35-8410-3936E7A87D0E}
 		{F1D801C9-8DA4-4D4E-98B2-44E99FD979A0} = {7392C902-F0F5-493E-BF06-73DBA811DFF9}
+		{4BC71B9A-4C98-43CC-ABE3-503763FC4FEA} = {F22AB961-F577-4F87-9423-13F10B1E207B}
+		{FDB37DF3-FD13-425F-8BBF-FF23023FCA81} = {95BE6C3D-1F2E-458F-9E52-99900AFB77BE}
+		{809D7793-A89E-402D-A7EF-516D72469CBA} = {FDB37DF3-FD13-425F-8BBF-FF23023FCA81}
+		{9A34E001-6863-408A-9A29-76C0791BDC69} = {FDB37DF3-FD13-425F-8BBF-FF23023FCA81}
+		{1D03C10B-BEF7-4164-B8E9-70CDD0170200} = {FDB37DF3-FD13-425F-8BBF-FF23023FCA81}
+		{CB990E59-C496-4ED1-BC0F-8477DE7D18A5} = {FDB37DF3-FD13-425F-8BBF-FF23023FCA81}
+		{D5BE75F5-F571-4347-8E59-03726350F333} = {4BC71B9A-4C98-43CC-ABE3-503763FC4FEA}
+		{C60827AD-B7A2-4D2A-BC08-65EE71474F07} = {4BC71B9A-4C98-43CC-ABE3-503763FC4FEA}
+		{AAEFFC57-C1A5-4225-AAA3-6D67D1A835C7} = {4BC71B9A-4C98-43CC-ABE3-503763FC4FEA}
+		{C61B2FA5-F39D-4D7B-A3CF-0229F1559FE3} = {4BC71B9A-4C98-43CC-ABE3-503763FC4FEA}
+		{25616C87-8A1F-4F57-807F-AABC42E10401} = {809D7793-A89E-402D-A7EF-516D72469CBA}
+		{7B3F692B-5B3C-43C2-A15C-3E1A8151C74E} = {9A34E001-6863-408A-9A29-76C0791BDC69}
+		{60668212-FFA8-4F39-8434-8FC1218ED997} = {9A34E001-6863-408A-9A29-76C0791BDC69}
+		{B652DDC9-7FA5-46F8-A2E9-A91FB3784060} = {CB990E59-C496-4ED1-BC0F-8477DE7D18A5}
+		{6168A528-A283-421F-91E5-8E984F5F1E18} = {1D03C10B-BEF7-4164-B8E9-70CDD0170200}
+		{A29C2A97-8311-4EE1-8D18-295DC8F376D8} = {D5BE75F5-F571-4347-8E59-03726350F333}
+		{FAC2D130-0FE9-467C-A117-0D5A85F66800} = {C60827AD-B7A2-4D2A-BC08-65EE71474F07}
+		{AC65716A-D084-48E2-AD6E-5D6F35C66A03} = {AAEFFC57-C1A5-4225-AAA3-6D67D1A835C7}
+		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991} = {C61B2FA5-F39D-4D7B-A3CF-0229F1559FE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2A12D44-3222-4D2F-9F09-981827CDE1F1}

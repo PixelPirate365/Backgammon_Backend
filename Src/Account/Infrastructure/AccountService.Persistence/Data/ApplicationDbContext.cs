@@ -1,43 +1,38 @@
-﻿using AuthService.Application.Interfaces;
-using AuthService.Domain.Common;
-using AuthService.Domain.Entities;
-using AuthService.Persistence.Expressions;
+﻿using AccountService.Domain.Common;
+using AccountService.Domain.Entities;
+using AccountService.Persistence.Expressions;
 using FluentAssertions;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace AuthService.Persistence.Data {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
-        private readonly ICurrentUserService _currentUserService;
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService currentUserService) : base(options) {
-            _currentUserService = currentUserService;
+namespace AccountService.Persistence.Data {
+    public class ApplicationDbContext : DbContext {
+        public virtual DbSet<AccountProfile> Profiles { get; set; }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
         }
-        public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public virtual DbSet<RefreshToken> RefreshToken { get; set; }
-
         protected virtual bool IsSoftDeleteFilterEnabled => true;
 
-        private static readonly MethodInfo ConfigureGlobalFiltersMethodInfo = 
+        private static readonly MethodInfo ConfigureGlobalFiltersMethodInfo =
             typeof(ApplicationDbContext).GetMethod(nameof(ConfigureGlobalFilters), BindingFlags.Instance | BindingFlags.NonPublic);
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken()) {
             foreach (var entry in ChangeTracker.Entries().ToList()) {
                 switch (entry.State) {
                     case EntityState.Added:
-                        SetCreationAuditProperties(entry.Entity, _currentUserService.UserId!);
+                        //change null later
+                        SetCreationAuditProperties(entry.Entity, null);
                         break;
 
                     case EntityState.Modified:
-                        SetModificationAuditProperties(entry.Entity, _currentUserService.UserId!);
+                        SetModificationAuditProperties(entry.Entity, null);
                         break;
 
                     case EntityState.Deleted:
                         CancelDeletionForSoftDelete(entry);
-                        SetModificationAuditProperties(entry.Entity, _currentUserService.UserId!);
+                        SetModificationAuditProperties(entry.Entity, null);
                         break;
                 }
             }
@@ -129,3 +124,4 @@ namespace AuthService.Persistence.Data {
         }
     }
 }
+

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-namespace AuthService.Application.Behaviours {
+namespace AccountService.Application.Behaviours {
     public sealed class PerformanceBehaviour<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse> {
