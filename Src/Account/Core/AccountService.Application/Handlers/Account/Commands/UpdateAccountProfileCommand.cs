@@ -1,13 +1,8 @@
-﻿using AccountService.Application.Handlers.Account.Queries;
-using AccountService.Common.Enums;
+﻿using AccountService.Common.Enums;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AccountService.Application.Handlers.Account.Commands {
+namespace AccountService.Application.Handlers.Account.Commands
+{
     public class UpdateAccountProfileCommand : IRequest<UpdateAccountCommandResponse> {
         public string? Nickname { get; set; }
         public string? ProfileDescription { get; set; }

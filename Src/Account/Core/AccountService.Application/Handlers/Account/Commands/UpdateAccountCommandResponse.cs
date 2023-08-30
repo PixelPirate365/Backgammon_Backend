@@ -1,11 +1,7 @@
 ﻿using AccountService.Common.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AccountService.Application.Handlers.Account.Commands {
+namespace AccountService.Application.Handlers.Account.Commands
+{
     public class UpdateAccountCommandResponse {
         public string? Nickname { get; set; }
         public string? ProfileDescription { get; set; }

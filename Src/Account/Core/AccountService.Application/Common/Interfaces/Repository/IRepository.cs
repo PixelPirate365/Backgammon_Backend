@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AccountService.Application.Common.Interfaces.Repository {
+namespace AccountService.Application.Common.Interfaces.Repository
+{
     public interface IRepository<T> where T : class {
         Task<bool> Add(T entity);
 
