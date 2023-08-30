@@ -1,4 +1,5 @@
-﻿using AccountService.Application.Handlers.Account.Queries;
+﻿using AccountService.Application.Handlers.Account.Commands;
+using AccountService.Application.Handlers.Account.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,11 @@ namespace AccountApi.Controllers {
         [HttpGet(nameof(GetAccountProfile))]
         public async Task<ActionResult<GetAccountProfileResponse>> GetAccountProfile() {
             var result = await _mediator.Send(new GetAccountProfileQuery());
+            return Ok(result);
+        }
+        [HttpPost(nameof(UpdateAccountProfile))]
+        public async Task<ActionResult<UpdateAccountResponse>> UpdateAccountProfile([FromBody]UpdateAccountProfileCommand command) {
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
     }

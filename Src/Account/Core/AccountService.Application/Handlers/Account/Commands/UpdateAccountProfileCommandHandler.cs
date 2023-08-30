@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace AccountService.Application.Handlers.Account.Commands {
-    public class UpdateAccountProfileCommandHandler : IRequestHandler<UpdateAccountProfileCommand, UpdateAccountCommandResponse> {
+    public class UpdateAccountProfileCommandHandler : IRequestHandler<UpdateAccountProfileCommand, UpdateAccountResponse> {
 
         readonly ILogger<UpdateAccountProfileCommandHandler> _logger;
         readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace AccountService.Application.Handlers.Account.Commands {
             _transactionService = transactionService;
         }
 
-        public async Task<UpdateAccountCommandResponse> Handle(UpdateAccountProfileCommand request,
+        public async Task<UpdateAccountResponse> Handle(UpdateAccountProfileCommand request,
             CancellationToken cancellationToken) {
             _logger.LogInformation($"{nameof(Handle)} method running in Handler: {nameof(GetAccountProfileQueryHandler)}");
             var accountProfile = await _repository.Table.FirstOrDefaultAsync();
@@ -41,8 +41,9 @@ namespace AccountService.Application.Handlers.Account.Commands {
                 }
                 fileTrans.Complete();
             }
+            var result = _mapper.Map<UpdateAccountResponse>(request);
             _logger.LogInformation($"{nameof(Handle)} method completed in Handler: {nameof(GetAccountProfileQueryHandler)}");
-            throw new NotImplementedException();
+            return result;
         }
     }
 }

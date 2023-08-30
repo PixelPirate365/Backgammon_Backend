@@ -2,7 +2,7 @@
 
 namespace AccountService.Application.Handlers.Account.Commands
 {
-    public class UpdateAccountProfileCommandValidator:AbstractValidator<UpdateAccountCommandResponse> {
+    public class UpdateAccountProfileCommandValidator:AbstractValidator<UpdateAccountResponse> {
         public UpdateAccountProfileCommandValidator()
         {
             RuleFor(x => x.Nickname).NotEmpty().MinimumLength(3);

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace AccountService.Application.Handlers.Account.Commands
 {
-    public class UpdateAccountProfileCommand : IRequest<UpdateAccountCommandResponse> {
+    public class UpdateAccountProfileCommand : IRequest<UpdateAccountResponse> {
         public string? Nickname { get; set; }
         public string? ProfileDescription { get; set; }
         public string? Image { get; set; }

@@ -1,4 +1,5 @@
 ﻿using AccountService.Application.Common.Interfaces.Repository;
+using AccountService.Application.Interfaces.Transaction;
 using AccountService.Domain.Entities;
 using AccountService.Persistence.Data;
 using AccountService.Persistence.Repositories;
@@ -16,6 +17,7 @@ namespace AccountService.Persistence.Modules {
                         b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
                     });
             });
+            services.AddScoped<ITransactionService>(provider => provider.GetService<ApplicationDbContext>()!);
             services.ResolveRepositories();
             return services;
         }
