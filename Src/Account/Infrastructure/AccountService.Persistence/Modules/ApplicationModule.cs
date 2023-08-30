@@ -1,4 +1,7 @@
-﻿using AccountService.Persistence.Data;
+﻿using AccountService.Application.Common.Interfaces.Repository;
+using AccountService.Domain.Entities;
+using AccountService.Persistence.Data;
+using AccountService.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +16,11 @@ namespace AccountService.Persistence.Modules {
                         b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
                     });
             });
+            services.ResolveRepositories();
             return services;
+        }
+        private static void ResolveRepositories(this IServiceCollection services) {
+            services.AddScoped<IRepository<AccountProfile>, Repository<AccountProfile>>();
         }
     }
 }
