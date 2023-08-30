@@ -6,16 +6,14 @@ using AccountService.Persistence.Modules;
 namespace AccountApi {
     public class Startup {
         public IConfiguration Configuration { get; }
-        private readonly IWebHostEnvironment _env;
-        public Startup(IConfiguration configuration, IWebHostEnvironment env) {
-            Configuration = configuration;
-            _env = env;
+        public Startup(IConfiguration configuration) {
+            Configuration = configuration;         
         }
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>());
             AccountApiSettings.ApiBaseUrl = Configuration[$"{nameof(AccountApiSettings)}:{nameof(AccountApiSettings.ApiBaseUrl)}"];
-            string wwwRootPath = _env.WebRootPath;
+            AccountApiSettings.ImageRootPath = Configuration[$"{nameof(AccountApiSettings)}:{nameof(AccountApiSettings.ImageRootPath)}"];
             services.AddSwaggerExtension();
             services.ConfigureApplication();
 

@@ -1,4 +1,5 @@
-﻿using AccountService.Domain.Common;
+﻿using AccountService.Application.Interfaces.Transaction;
+using AccountService.Domain.Common;
 using AccountService.Domain.Entities;
 using AccountService.Persistence.Expressions;
 using FluentAssertions;
@@ -7,9 +8,10 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Transactions;
 
 namespace AccountService.Persistence.Data {
-    public class ApplicationDbContext : DbContext {
+    public class ApplicationDbContext : DbContext, ITransactionService {
         public virtual DbSet<AccountProfile> Profiles { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
         }
@@ -121,6 +123,13 @@ namespace AccountService.Persistence.Data {
             entry.Reload();
             entry.State = EntityState.Modified;
             entry.Entity.As<ISoftDelete>().IsDeleted = true;
+        }
+        public TransactionScope CreateAsyncTransactionScope(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted) {
+            var transactionOptions = new TransactionOptions {
+                IsolationLevel = isolationLevel,
+                Timeout = TransactionManager.MaximumTimeout
+            };
+            return new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled);
         }
     }
 }

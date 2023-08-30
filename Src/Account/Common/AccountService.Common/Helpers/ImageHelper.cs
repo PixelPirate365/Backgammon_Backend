@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace AccountService.Common.Helpers {
     public static class ImageHelper {
         public static string SaveImage(string base64String) {
-            string folder = "/images/profilepictures";
+            string folder = AccountApiSettings.ImageRootPath;
+                
             string imagePath = @"{0}/{1}.png";
             imagePath = string.Format(imagePath, folder, Guid.NewGuid());
             var bytes = Convert.FromBase64String(base64String);
@@ -22,7 +23,7 @@ namespace AccountService.Common.Helpers {
             return imagePath;
         }
         public static ByteArrayContent Get(string path) {
-            string folder = "/images/profilepictures";
+            string folder = AccountApiSettings.ImageRootPath;
             string fullPath = Path.Combine(AccountApiSettings.ImageRootPath, folder, path);
             return new ByteArrayContent(File.ReadAllBytes(fullPath));
         }
