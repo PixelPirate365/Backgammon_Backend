@@ -7,8 +7,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
-namespace AuthService.Application.Tests.Handlers.User.Commands.ChangeUserPassword
-{
+namespace AuthService.Application.Tests.Handlers.User.Commands.ChangeUserPassword {
     public class ChangeUserPasswordCommandHandlerTests {
         readonly Mock<IIdentityService> _identityService;
         readonly Mock<ICurrentUserService> _currentUserService;
@@ -76,5 +75,5 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.ChangeUserPasswor
         }
 
     }
-    
+
 }
