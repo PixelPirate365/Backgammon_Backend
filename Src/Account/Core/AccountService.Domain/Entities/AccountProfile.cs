@@ -14,5 +14,8 @@ namespace AccountService.Domain.Entities {
         public DateTime? BirthDate { get; set; } 
         public GenderEnum Gender { get; set; } = GenderEnum.Unkown;
         public string? Image { get; set; }
+        public ICollection<FriendRequest> SendFriendRequests { get; set; } = null;
+        public ICollection<FriendRequest> RecieveFriendRequests { get; set; } = null;
+
     }
 }

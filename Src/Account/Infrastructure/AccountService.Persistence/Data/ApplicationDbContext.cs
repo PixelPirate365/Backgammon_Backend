@@ -13,6 +13,8 @@ using System.Transactions;
 namespace AccountService.Persistence.Data {
     public class ApplicationDbContext : DbContext, ITransactionService {
         public virtual DbSet<AccountProfile> Profiles { get; set; }
+        public virtual DbSet<FriendRequest> FriendRequest { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
         }
         protected virtual bool IsSoftDeleteFilterEnabled => true;

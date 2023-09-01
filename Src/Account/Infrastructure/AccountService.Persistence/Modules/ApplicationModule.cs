@@ -23,6 +23,8 @@ namespace AccountService.Persistence.Modules {
         }
         private static void ResolveRepositories(this IServiceCollection services) {
             services.AddScoped<IRepository<AccountProfile>, Repository<AccountProfile>>();
+            services.AddScoped<IRepository<FriendRequest>, Repository<FriendRequest>>();
+
         }
     }
 }
