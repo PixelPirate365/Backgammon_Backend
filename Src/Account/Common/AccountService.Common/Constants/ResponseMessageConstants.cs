@@ -9,6 +9,8 @@ namespace AccountService.Common.Constants {
         public const string FriendRequestAccepted = "Friend request accepted succefuly";
         public const string FriendRequestRejected = "Friend request rejected succefuly";
         public const string DailyCurrencyAlreadyRewarded = "You already recieved daily reward";
+        public const string CurrencyLowerThanZero = "You cannot bet more than your currency balance";
+
 
 
     }
