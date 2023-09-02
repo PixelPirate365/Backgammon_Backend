@@ -11,7 +11,7 @@ namespace AuthService.Application.Handlers.User.Commands.CreateUser {
                 .MaximumLength(ValidationConstants.MaximumUserNameLength);
             RuleFor(x => x.Password).NotEmpty()
                 .MinimumLength(ValidationConstants.MinimumPasswordLength)
-                .MaximumLength(ValidationConstants.MinimumPasswordLength);
+                .MaximumLength(ValidationConstants.MaximumPasswordLength);
         }
     }
 }

@@ -19,8 +19,10 @@ namespace AccountService.Application.Modules {
         }
         private static IServiceCollection AddApplication(this IServiceCollection services) {
             var accountMappingProfile = MapperConfigurationProfile.AccountMappingProfile();
+            var friendRequestMappingProfile = MapperConfigurationProfile.FriendRequestMappingProfile();
             var mappingConfig = new MapperConfiguration(mc => {
                 mc.AddProfile(accountMappingProfile);
+                mc.AddProfile(friendRequestMappingProfile);
             });
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);

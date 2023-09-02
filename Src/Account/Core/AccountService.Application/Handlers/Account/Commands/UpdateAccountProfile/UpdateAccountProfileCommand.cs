@@ -1,13 +1,14 @@
 ﻿using AccountService.Common.Enums;
+using MediatR;
 
-namespace AccountService.Application.Handlers.Account.Queries
+namespace AccountService.Application.Handlers.Account.Commands.UpdateAccountProfile
 {
-    public class GetAccountProfileResponse {
-        public Guid Id { get; set; }
+    public class UpdateAccountProfileCommand : IRequest<UpdateAccountResponse>
+    {
         public string? Nickname { get; set; }
         public string? ProfileDescription { get; set; }
+        public string? Image { get; set; }
         public DateTime? BirthDate { get; set; }
         public GenderEnum Gender { get; set; }
-        public string? Image { get; set; }
     }
 }

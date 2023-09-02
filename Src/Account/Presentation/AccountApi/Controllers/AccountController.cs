@@ -1,9 +1,10 @@
-﻿using AccountService.Application.Handlers.Account.Commands;
-using AccountService.Application.Handlers.Account.Queries;
+﻿using AccountService.Application.Handlers.Account.Commands.UpdateAccountProfile;
+using AccountService.Application.Handlers.Account.Queries.GetAccountProfile;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AccountApi.Controllers {
+namespace AccountApi.Controllers
+{
     public class AccountController:BaseController<AccountController> {
         private readonly IMediator _mediator;
         public AccountController(IMediator mediator) {

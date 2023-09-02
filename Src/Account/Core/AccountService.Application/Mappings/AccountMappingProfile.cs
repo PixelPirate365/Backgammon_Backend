@@ -1,5 +1,5 @@
-﻿using AccountService.Application.Handlers.Account.Commands;
-using AccountService.Application.Handlers.Account.Queries;
+﻿using AccountService.Application.Handlers.Account.Commands.UpdateAccountProfile;
+using AccountService.Application.Handlers.Account.Queries.GetAccountProfile;
 using AccountService.Common.Settings;
 using AccountService.Domain.Entities;
 using AutoMapper;

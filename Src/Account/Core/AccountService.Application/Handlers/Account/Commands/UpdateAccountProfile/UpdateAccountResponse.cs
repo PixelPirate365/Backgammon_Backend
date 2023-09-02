@@ -1,9 +1,9 @@
 ﻿using AccountService.Common.Enums;
-using MediatR;
 
-namespace AccountService.Application.Handlers.Account.Commands
+namespace AccountService.Application.Handlers.Account.Commands.UpdateAccountProfile
 {
-    public class UpdateAccountProfileCommand : IRequest<UpdateAccountResponse> {
+    public class UpdateAccountResponse
+    {
         public string? Nickname { get; set; }
         public string? ProfileDescription { get; set; }
         public string? Image { get; set; }
