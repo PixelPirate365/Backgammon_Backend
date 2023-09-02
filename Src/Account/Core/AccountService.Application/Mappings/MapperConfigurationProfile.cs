@@ -9,5 +9,8 @@ namespace AccountService.Application.Mappings
         public static Profile FriendRequestMappingProfile() {
             return new FriendRequestMappingProfile();
         }
+        public static Profile AccountCurrencyMappingProfile() {
+            return new AccountCurrencyMappingProfile();
+        }
     }
 }
