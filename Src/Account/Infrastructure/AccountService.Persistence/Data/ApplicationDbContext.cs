@@ -14,6 +14,7 @@ namespace AccountService.Persistence.Data {
     public class ApplicationDbContext : DbContext, ITransactionService {
         public virtual DbSet<AccountProfile> Profiles { get; set; }
         public virtual DbSet<FriendRequest> FriendRequest { get; set; }
+        public virtual DbSet<AccountDailyReward> AccountDailyReward { get; set; }
         public virtual DbSet<Currency> Currency { get; set; }
         public virtual DbSet<AccountProfileCurrency> AccountProfileCurrency { get; set; }
 

@@ -18,4 +18,8 @@
     <ProjectReference Include="..\AccountService.Domain\AccountService.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\CurrencyManagment\Queries\" />
+  </ItemGroup>
+
 </Project>
