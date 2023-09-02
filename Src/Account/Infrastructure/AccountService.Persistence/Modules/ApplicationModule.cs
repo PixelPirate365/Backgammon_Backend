@@ -24,7 +24,9 @@ namespace AccountService.Persistence.Modules {
         private static void ResolveRepositories(this IServiceCollection services) {
             services.AddScoped<IRepository<AccountProfile>, Repository<AccountProfile>>();
             services.AddScoped<IRepository<FriendRequest>, Repository<FriendRequest>>();
-
+            services.AddScoped<IRepository<AccountDailyReward>, Repository<AccountDailyReward>>();
+            services.AddScoped<IRepository<Currency>, Repository<Currency>>();
+            services.AddScoped<IRepository<AccountProfileCurrency>, Repository<AccountProfileCurrency>>();
         }
     }
 }
