@@ -16,6 +16,7 @@ namespace AccountService.Domain.Entities {
         public string? Image { get; set; }
         public ICollection<FriendRequest> SendFriendRequests { get; set; } = null;
         public ICollection<FriendRequest> RecieveFriendRequests { get; set; } = null;
+        public ICollection<AccountProfileCurrency> AccountProfileCurrencies { get; set; }
 
     }
 }

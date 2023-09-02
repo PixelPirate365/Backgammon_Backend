@@ -22,6 +22,7 @@ namespace AccountApi {
                     if (context.Database.IsSqlServer()) {
                         await context.Database.MigrateAsync();
                     }
+                    await ApplicationDbContextSeed.SeedAccountData(context);
                     logger.LogInformation("Host created.");
                 }
                 catch (Exception ex) {
