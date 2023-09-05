@@ -21,6 +21,7 @@
 	  <ProjectReference Include="..\..\Common\AuthApi.Common\AuthApi.Common.csproj" />
 	  <ProjectReference Include="..\..\Core\AuthService.Application\AuthService.Application.csproj" />
 	  <ProjectReference Include="..\..\Infrastructure\AuthService.Identity\AuthService.Identity.csproj" />
+	  <ProjectReference Include="..\..\Infrastructure\AuthService.MessageBus\AuthService.MessageBus.csproj" />
 	  <ProjectReference Include="..\..\Infrastructure\AuthService.Persistence\AuthService.Persistence.csproj" />
 	</ItemGroup>
 

@@ -4,7 +4,6 @@ using AuthService.Common.Constants;
 using AuthService.Common.Responses;
 using AuthService.Domain.Entities;
 using AuthService.Identity.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

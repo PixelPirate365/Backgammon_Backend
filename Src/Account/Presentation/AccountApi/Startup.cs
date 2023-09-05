@@ -1,6 +1,8 @@
-﻿using AccountApi.Extensions;
+﻿using AccountApi.Consumers;
+using AccountApi.Extensions;
 using AccountApi.Filters;
 using AccountService.Application.Modules;
+using AccountService.Common.Options.RabbitMQ;
 using AccountService.Common.Settings;
 using AccountService.Persistence.Modules;
 namespace AccountApi {
@@ -18,8 +20,11 @@ namespace AccountApi {
             AccountApiSettings.ImageRootPath = _env.WebRootPath;
             services.AddSwaggerExtension();
             services.ConfigureApplication();
-
+            var rabbitMQOptions = new RabbitMQOptions();
+            Configuration.GetSection(nameof(RabbitMQOptions)).Bind(rabbitMQOptions);
+            services.AddSingleton(rabbitMQOptions);
             services.AddPersistence(Configuration);
+            services.AddHostedService<AccountCreationEventConsumer>();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment()) {
@@ -36,6 +41,7 @@ namespace AccountApi {
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });
+            //app.UseRabbitMQBusConsumer();
         }
     }
 }

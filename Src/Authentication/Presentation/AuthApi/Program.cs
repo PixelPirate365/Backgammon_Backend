@@ -1,4 +1,3 @@
-
 using AuthService.Domain.Entities;
 using AuthService.Persistence.Data;
 using Microsoft.AspNetCore.Identity;

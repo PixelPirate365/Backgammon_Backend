@@ -60,84 +60,40 @@ namespace AuthApi.Filters {
             var details = new ValidationProblemDetails(context.ModelState) {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
             };
-
-
-
-
             context.Result = new BadRequestObjectResult(details);
-
-
-
-
             context.ExceptionHandled = true;
         }
 
         private void HandleNotFoundException(ExceptionContext context) {
             var exception = context.Exception as NotFoundException;
-
-
-
-
             var details = new ProblemDetails() {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
                 Title = "The specified resource was not found.",
                 Detail = exception!.Message
             };
-
-
-
-
             context.Result = new NotFoundObjectResult(details);
-
-
-
-
             context.ExceptionHandled = true;
         }
-
-
-
-
         private void HandleForbiddenAccessException(ExceptionContext context) {
             var details = new ProblemDetails {
                 Status = StatusCodes.Status403Forbidden,
                 Title = "Forbidden",
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.3"
             };
-
-
-
-
             context.Result = new ObjectResult(details) {
                 StatusCode = StatusCodes.Status403Forbidden
             };
-
-
-
-
             context.ExceptionHandled = true;
         }
-
-
-
-
         private void HandleUnknownException(ExceptionContext context) {
             var details = new ProblemDetails {
                 Status = StatusCodes.Status500InternalServerError,
                 Title = "An error occurred while processing your request.",
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1"
             };
-
-
-
-
             context.Result = new ObjectResult(details) {
                 StatusCode = StatusCodes.Status500InternalServerError
             };
-
-
-
-
             context.ExceptionHandled = true;
         }
     }

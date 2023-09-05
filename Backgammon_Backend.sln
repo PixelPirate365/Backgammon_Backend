@@ -89,6 +89,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Persistence.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApi.Tests", "Tests\Unit\Account\Presentation\AuthApi.Tests\AuthApi.Tests.csproj", "{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.MessageBus", "Src\Authentication\Infrastructure\AuthService.MessageBus\AuthService.MessageBus.csproj", "{12F8A407-AE40-4816-884A-E77255160846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +177,10 @@ Global
 		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12F8A407-AE40-4816-884A-E77255160846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12F8A407-AE40-4816-884A-E77255160846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12F8A407-AE40-4816-884A-E77255160846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12F8A407-AE40-4816-884A-E77255160846}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,6 +227,7 @@ Global
 		{FAC2D130-0FE9-467C-A117-0D5A85F66800} = {C60827AD-B7A2-4D2A-BC08-65EE71474F07}
 		{AC65716A-D084-48E2-AD6E-5D6F35C66A03} = {AAEFFC57-C1A5-4225-AAA3-6D67D1A835C7}
 		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991} = {C61B2FA5-F39D-4D7B-A3CF-0229F1559FE3}
+		{12F8A407-AE40-4816-884A-E77255160846} = {9B88C3D7-2E57-43FD-B86D-D690C946346A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2A12D44-3222-4D2F-9F09-981827CDE1F1}

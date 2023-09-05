@@ -1,10 +1,9 @@
 ﻿using AuthApi.Extensions;
 using AuthApi.Filters;
 using AuthService.Application.Modules;
-using AuthService.Common.Constants;
 using AuthService.Identity.Modules;
+using AuthService.MessageBus.Modules;
 using AuthService.Persistence.Modules;
-using Microsoft.OpenApi.Models;
 namespace AuthApi {
     public class Startup {
         public IConfiguration Configuration { get; }
@@ -13,11 +12,12 @@ namespace AuthApi {
         }
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers(options =>
-                options.Filters.Add<ApiExceptionFilterAttribute>()); 
+                options.Filters.Add<ApiExceptionFilterAttribute>());
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.ConfigureApplication();
             services.AddIdentityAuthorization(Configuration);
             services.AddPersistence(Configuration);
+            services.AddMessageBus(Configuration);
             services.AddSwaggerExtension();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {

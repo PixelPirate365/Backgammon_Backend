@@ -10,7 +10,5 @@ namespace AuthService.Application.Common.Constants {
         public const int MaximumPasswordLength = 16;
         public const int MinimumUserNameLength = 3;
         public const int MaximumUserNameLength = 14;
-
-
     }
 }

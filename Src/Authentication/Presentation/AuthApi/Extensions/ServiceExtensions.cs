@@ -6,9 +6,9 @@ namespace AuthApi.Extensions {
             services.AddSwaggerGen(x => {
                 x.SwaggerDoc("v1", new OpenApiInfo { Title = "Authentication API", Version = "v1" });
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
-                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n
+                    Description = @"JWT Authorization header using the Bearer scheme.
                       Enter 'Bearer' [space] and then your token in the text input below.
-                      \r\n\r\nExample: 'Bearer 12345abcdef'",
+                      Example: 'Bearer 12345abcdef'",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,

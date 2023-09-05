@@ -21,8 +21,5 @@ namespace AuthService.Common.Constants {
         public const string RefreshTokenNotMatchJWT = "This refresh token does not match JWT";
         public const string SuccefulyDeleted = "User deleted successfully";
         public const string UserDeactivated = "User is deactivated";
-
-
-
     }
 }

@@ -1,11 +1,6 @@
 ﻿using AuthService.Application.Common.Interfaces.Repository;
 using AuthService.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AuthService.Persistence.Repositories {
     public class Repository<T> : IRepository<T> where T : class {
