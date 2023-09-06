@@ -13,7 +13,7 @@ namespace AccountApi {
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(config)
                 .CreateLogger();
-            var host = CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args).UseDefaultServiceProvider(x => x.ValidateScopes = false).Build();
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();

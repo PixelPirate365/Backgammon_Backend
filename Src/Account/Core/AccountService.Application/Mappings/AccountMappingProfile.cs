@@ -1,4 +1,5 @@
-﻿using AccountService.Application.Handlers.Account.Commands.UpdateAccountProfile;
+﻿using AccountService.Application.Handlers.Account.Commands.CreateAccountProfile;
+using AccountService.Application.Handlers.Account.Commands.UpdateAccountProfile;
 using AccountService.Application.Handlers.Account.Queries.GetAccountProfile;
 using AccountService.Common.Settings;
 using AccountService.Domain.Entities;
@@ -13,6 +14,7 @@ namespace AccountService.Application.Mappings
                 opt => opt.MapFrom(
                     src => $"{AccountApiSettings.ApiBaseUrl}{src.Image}"));
             CreateMap<UpdateAccountProfileCommand, UpdateAccountResponse>();
+            CreateMap<CreateAccountProfileCommand, AccountProfile>();
         }
     }
 }
