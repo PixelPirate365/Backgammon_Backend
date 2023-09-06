@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\AccountService.Common\AccountService.Common.csproj" />
     <ProjectReference Include="..\..\Core\AccountService.Application\AccountService.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\AccountService.Identity\AccountService.Identity.csproj" />
     <ProjectReference Include="..\..\Infrastructure\AccountService.Persistence\AccountService.Persistence.csproj" />
   </ItemGroup>
 

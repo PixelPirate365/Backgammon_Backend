@@ -1,10 +1,12 @@
 ﻿using AccountApi.Consumers;
 using AccountApi.Extensions;
 using AccountApi.Filters;
+using AccountApi.Middlewares;
 using AccountService.Application.Modules;
 using AccountService.Common.Options.RabbitMQ;
 using AccountService.Common.Settings;
 using AccountService.Persistence.Modules;
+using AccountService.Identity.Modules;
 namespace AccountApi {
     public class Startup {
         public IConfiguration Configuration { get; }
@@ -16,14 +18,17 @@ namespace AccountApi {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>());
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             AccountApiSettings.ApiBaseUrl = Configuration[$"{nameof(AccountApiSettings)}:{nameof(AccountApiSettings.ApiBaseUrl)}"];
             AccountApiSettings.ImageRootPath = _env.WebRootPath;
+            AuthenticationApiSettings.ApiBaseUrl = Configuration[$"{nameof(AuthenticationApiSettings)}:{nameof(AuthenticationApiSettings.ApiBaseUrl)}"];
             services.AddSwaggerExtension();
             services.ConfigureApplication();
             var rabbitMQOptions = new RabbitMQOptions();
             Configuration.GetSection(nameof(RabbitMQOptions)).Bind(rabbitMQOptions);
             services.AddSingleton(rabbitMQOptions);
             services.AddPersistence(Configuration);
+            services.AddIdentityAuthorization(Configuration);
             services.AddHostedService<AccountCreationEventConsumer>();
             services.AddHostedService<AccountSoftDeleteEventConsumer>();
 
@@ -39,11 +44,11 @@ namespace AccountApi {
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<JwtForwardingMiddleware>();
             app.UseSwaggerExtension(Configuration);
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });
-            //app.UseRabbitMQBusConsumer();
         }
     }
 }

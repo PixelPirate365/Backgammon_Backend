@@ -3,6 +3,7 @@ using AuthService.Application.Handlers.User.Commands.DeleteUser;
 using AuthService.Application.Interfaces;
 using AuthService.Common.Responses;
 using AuthService.Domain.Entities;
+using AuthService.MessageBus.Interfaces;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -14,13 +15,15 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.DeleteUser
         readonly Mock<ICurrentUserService> _currentUserService;
         readonly Mock<IRepository<ApplicationUser>> _userRepository;
         readonly Mock<ILogger<DeleteUserCommandHandler>> _logger;
+        readonly Mock<IRabbitMQMessageSender> _messageSender;
         readonly DeleteUserCommandHandler _commandHandler;
         public DeleteUserCommandHandlerTests() {
             _identityService = new Mock<IIdentityService>();
             _currentUserService = new Mock<ICurrentUserService>();
             _userRepository = new Mock<IRepository<ApplicationUser>>();
             _logger = new Mock<ILogger<DeleteUserCommandHandler>>();
-            _commandHandler = new DeleteUserCommandHandler(_currentUserService.Object, _identityService.Object, _userRepository.Object, _logger.Object);
+            _messageSender = new Mock<IRabbitMQMessageSender>();
+            _commandHandler = new DeleteUserCommandHandler(_currentUserService.Object, _identityService.Object, _userRepository.Object, _logger.Object, _messageSender.Object);
         }
         [Fact]
         public async Task DeleteUserCommandHandler_Successfully() {

@@ -3,16 +3,21 @@ using AuthService.Application.Handlers.User.Commands.CreateUser;
 using AuthService.Application.Handlers.User.Commands.DeleteUser;
 using AuthService.Application.Handlers.User.Commands.RefreshUserToken;
 using AuthService.Application.Handlers.User.Queries.AuthenticateUser;
+using AuthService.Application.Interfaces;
 using AuthService.Common.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AuthApi.Controllers {
     public class UserController : BaseController<UserController> {
-        private readonly IMediator _mediator;
-        public UserController(IMediator mediator) {
+        readonly IMediator _mediator;
+        readonly ICurrentUserService _currentUserService;
+        public UserController(IMediator mediator,
+            ICurrentUserService currentUserService) {
             _mediator = mediator;
+            _currentUserService = currentUserService;
         }
 
         [AllowAnonymous]
@@ -44,6 +49,14 @@ namespace AuthApi.Controllers {
         public async Task<ActionResult<Response>> DeleteUser() {
             var result = await _mediator.Send(new DeleteUserCommand());
             return Ok(result);
+        }
+        [HttpGet(nameof(ValidateToken))]
+        public async Task<ActionResult<bool>> ValidateToken() {
+            if (!string.IsNullOrWhiteSpace(_currentUserService.UserId)) {
+                await Task.Delay(0);
+                return Ok(true);
+            }
+            return Ok(false);
         }
     }
 }

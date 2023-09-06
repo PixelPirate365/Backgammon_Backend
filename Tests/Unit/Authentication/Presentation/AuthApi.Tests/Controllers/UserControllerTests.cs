@@ -4,6 +4,7 @@ using AuthService.Application.Handlers.User.Commands.CreateUser;
 using AuthService.Application.Handlers.User.Commands.DeleteUser;
 using AuthService.Application.Handlers.User.Commands.RefreshUserToken;
 using AuthService.Application.Handlers.User.Queries.AuthenticateUser;
+using AuthService.Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -14,10 +15,13 @@ namespace AuthApi.Tests.Controllers
     public class UserControllerTests {
         private readonly UserController _controller;
         private readonly Mock<IMediator> _mediator;
+        private readonly Mock<ICurrentUserService> _currentUserService;
+
         public UserControllerTests()
         {
             _mediator = new Mock<IMediator>();
-            _controller = new(_mediator.Object);
+            _currentUserService = new Mock<ICurrentUserService>();
+            _controller = new(_mediator.Object, _currentUserService.Object);
         }
         [Fact]
         public async Task CreateUser_Successfully() {

@@ -3,6 +3,7 @@ using AuthService.Application.Interfaces;
 using AuthService.Application.Mappings;
 using AuthService.Common.Responses;
 using AuthService.Domain.Entities;
+using AuthService.MessageBus.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -15,15 +16,17 @@ namespace AuthService.Application.Tests.Handlers.User.Commands.CreateUser
         readonly Mock<IIdentityService> _identityService;
         readonly Mock<ITokenService> _tokenService;
         readonly Mock<ILogger<CreateUserCommandHandler>> _logger;
-        private readonly IMapper _mapper;
+        readonly IMapper _mapper;
         readonly CreateUserCommandHandler _commandHandler = null;
+        readonly Mock<IRabbitMQMessageSender> _messageSender;
         public CreateUserCommandHandlerTests()
         {
             _identityService = new Mock<IIdentityService>();
             _logger = new Mock<ILogger<CreateUserCommandHandler>>();
             _tokenService = new Mock<ITokenService>();
+            _messageSender = new Mock<IRabbitMQMessageSender>();
             _mapper = new Mapper(new MapperConfiguration(configurations => configurations.AddProfile(MapperConfigurationProfile.UserMappingProfile())));
-            _commandHandler = new CreateUserCommandHandler(_identityService.Object,_tokenService.Object,_logger.Object,_mapper);
+            _commandHandler = new CreateUserCommandHandler(_identityService.Object,_tokenService.Object,_logger.Object,_mapper, _messageSender.Object);
         }
         [Fact]
         public async Task CreateUserCommandHandler_Successfully() {

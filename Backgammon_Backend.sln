@@ -79,17 +79,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Domain", "Sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountApi", "Src\Account\Presentation\AccountApi\AccountApi.csproj", "{B652DDC9-7FA5-46F8-A2E9-A91FB3784060}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Persistence", "Src\Account\Infrastructure\AccountService.Persistence\AccountService.Persistence.csproj", "{6168A528-A283-421F-91E5-8E984F5F1E18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Persistence", "Src\Account\Infrastructure\AccountService.Persistence\AccountService.Persistence.csproj", "{6168A528-A283-421F-91E5-8E984F5F1E18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Common.Tests", "Tests\Unit\Account\Common\AccountService.Common.Tests\AccountService.Common.Tests.csproj", "{A29C2A97-8311-4EE1-8D18-295DC8F376D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Common.Tests", "Tests\Unit\Account\Common\AccountService.Common.Tests\AccountService.Common.Tests.csproj", "{A29C2A97-8311-4EE1-8D18-295DC8F376D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Application.Tests", "Tests\Unit\Account\Core\AccountService.Application.Tests\AccountService.Application.Tests.csproj", "{FAC2D130-0FE9-467C-A117-0D5A85F66800}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Application.Tests", "Tests\Unit\Account\Core\AccountService.Application.Tests\AccountService.Application.Tests.csproj", "{FAC2D130-0FE9-467C-A117-0D5A85F66800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Persistence.Tests", "Tests\Unit\Account\Infrastructure\AccountService.Persistence.Tests\AccountService.Persistence.Tests.csproj", "{AC65716A-D084-48E2-AD6E-5D6F35C66A03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Persistence.Tests", "Tests\Unit\Account\Infrastructure\AccountService.Persistence.Tests\AccountService.Persistence.Tests.csproj", "{AC65716A-D084-48E2-AD6E-5D6F35C66A03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApi.Tests", "Tests\Unit\Account\Presentation\AuthApi.Tests\AuthApi.Tests.csproj", "{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthApi.Tests", "Tests\Unit\Account\Presentation\AuthApi.Tests\AuthApi.Tests.csproj", "{FA7C9D61-A6A9-480C-BABD-2C6FD6454991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.MessageBus", "Src\Authentication\Infrastructure\AuthService.MessageBus\AuthService.MessageBus.csproj", "{12F8A407-AE40-4816-884A-E77255160846}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.MessageBus", "Src\Authentication\Infrastructure\AuthService.MessageBus\AuthService.MessageBus.csproj", "{12F8A407-AE40-4816-884A-E77255160846}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Identity", "Src\Account\Infrastructure\AccountService.Identity\AccountService.Identity.csproj", "{CBFBCE23-64C4-4519-A442-F4DD13017B92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -181,6 +183,10 @@ Global
 		{12F8A407-AE40-4816-884A-E77255160846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12F8A407-AE40-4816-884A-E77255160846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12F8A407-AE40-4816-884A-E77255160846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBFBCE23-64C4-4519-A442-F4DD13017B92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBFBCE23-64C4-4519-A442-F4DD13017B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBFBCE23-64C4-4519-A442-F4DD13017B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBFBCE23-64C4-4519-A442-F4DD13017B92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -228,6 +234,7 @@ Global
 		{AC65716A-D084-48E2-AD6E-5D6F35C66A03} = {AAEFFC57-C1A5-4225-AAA3-6D67D1A835C7}
 		{FA7C9D61-A6A9-480C-BABD-2C6FD6454991} = {C61B2FA5-F39D-4D7B-A3CF-0229F1559FE3}
 		{12F8A407-AE40-4816-884A-E77255160846} = {9B88C3D7-2E57-43FD-B86D-D690C946346A}
+		{CBFBCE23-64C4-4519-A442-F4DD13017B92} = {1D03C10B-BEF7-4164-B8E9-70CDD0170200}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2A12D44-3222-4D2F-9F09-981827CDE1F1}
