@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace AuthApi.Common.Constants {
     public static class EventNameConstants {
         public const string AccountProfileCreationEvent = "AccountProfileCreationEvent";
+        public const string AccountSoftDeleteEvent = "AccountSoftDeleteEvent";
     }
 }

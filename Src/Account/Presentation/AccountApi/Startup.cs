@@ -25,6 +25,8 @@ namespace AccountApi {
             services.AddSingleton(rabbitMQOptions);
             services.AddPersistence(Configuration);
             services.AddHostedService<AccountCreationEventConsumer>();
+            services.AddHostedService<AccountSoftDeleteEventConsumer>();
+
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment()) {
