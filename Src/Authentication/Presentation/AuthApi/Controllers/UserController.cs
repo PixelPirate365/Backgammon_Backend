@@ -8,7 +8,6 @@ using AuthService.Common.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace AuthApi.Controllers {
     public class UserController : BaseController<UserController> {

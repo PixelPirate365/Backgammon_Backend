@@ -14,7 +14,6 @@ namespace AuthService.Application.Handlers.User.Commands.ChangeUserPassword {
                 .MaximumLength(ValidationConstants.MinimumPasswordLength);
 
             RuleFor(x => x.ConfirmNewPassword).NotEmpty()
-                .MinimumLength(8)
                 .MinimumLength(ValidationConstants.MinimumPasswordLength)
                 .MaximumLength(ValidationConstants.MinimumPasswordLength);
         }

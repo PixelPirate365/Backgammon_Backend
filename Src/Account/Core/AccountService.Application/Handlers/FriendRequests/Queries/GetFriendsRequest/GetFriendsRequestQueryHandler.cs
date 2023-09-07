@@ -1,4 +1,5 @@
 ﻿using AccountService.Application.Common.Interfaces.Repository;
+using AccountService.Application.Interfaces;
 using AccountService.Common.Enums;
 using AccountService.Domain.Entities;
 using AutoMapper;
@@ -13,19 +14,23 @@ namespace AccountService.Application.Handlers.FriendRequests.Queries.GetFriendsR
         readonly ILogger<GetFriendsRequestQueryHandler> _logger;
         readonly IRepository<FriendRequest> _repository;
         readonly IMapper _mapper;
-        public GetFriendsRequestQueryHandler(ILogger<GetFriendsRequestQueryHandler> logger,
+        readonly ICurrentUserService _currentUserService;
+        public GetFriendsRequestQueryHandler(
+            ILogger<GetFriendsRequestQueryHandler> logger,
             IMapper mapper,
-            IRepository<FriendRequest> repository) {
+            IRepository<FriendRequest> repository,
+            ICurrentUserService currentUserService) {
             _logger = logger;
             _mapper = mapper;
             _repository = repository;
+            _currentUserService = currentUserService;
         }
 
         public async Task<List<GetFriendRequestResponse>> Handle(GetFriendsRequestQuery request, CancellationToken cancellationToken) {
             _logger.LogInformation($"{nameof(Handle)} method running in Handler: {nameof(GetFriendsRequestQueryHandler)}");
             var result = await _repository.TableNoTracking.Include(x => x.SenderProfile)
                 .Where(x => 
-                x.RecieverProfileId == Guid.Parse("9826CB72-500B-4DC2-98BA-5B8158C8964D")
+                x.RecieverProfileId == _currentUserService.UserId
                 && x.Status == (int)FriendRequestStatusEnum.Pending)
                 .ProjectTo<GetFriendRequestResponse>(_mapper.ConfigurationProvider)
                 .ToListAsync();

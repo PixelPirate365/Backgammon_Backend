@@ -1,5 +1,6 @@
 ﻿using AccountService.Application.Common.Interfaces.Repository;
 using AccountService.Application.Handlers.CurrencyManagment.Commands.CollectDailyLoginRewards;
+using AccountService.Application.Interfaces;
 using AccountService.Common.Constants;
 using AccountService.Domain.Entities;
 using AutoMapper;
@@ -13,14 +14,17 @@ namespace AccountService.Application.Handlers.CurrencyManagment.Commands.UpdateA
         readonly ILogger<CollectDailyLoginRewardCommandHandler> _logger;
         readonly IMapper _mapper;
         readonly IRepository<AccountProfileCurrency> _accountProfileCurrencyRepository;
+        readonly ICurrentUserService _currentUserService;
         public UpdateAccountCurrencyCommandHandler(
             ILogger<CollectDailyLoginRewardCommandHandler> logger,
             IMapper mapper,
-            IRepository<AccountProfileCurrency> accountProfileCurrencyRepository
+            IRepository<AccountProfileCurrency> accountProfileCurrencyRepository,
+            ICurrentUserService currentUserService
             ) {
             _accountProfileCurrencyRepository = accountProfileCurrencyRepository;
             _logger = logger;
             _mapper = mapper;
+            _currentUserService = currentUserService;
         }
 
         public async Task<UpdateAccountCurrencyResponse> Handle(UpdateAccountCurrencyCommand request, CancellationToken cancellationToken) {
@@ -28,7 +32,7 @@ namespace AccountService.Application.Handlers.CurrencyManagment.Commands.UpdateA
             var result = await _accountProfileCurrencyRepository.TableNoTracking.Include(
                 x => x.AccountProfile)
                 .Include(x=>x.Currency)
-                .FirstOrDefaultAsync( x=>x.AccountProfile.UserId == Guid.Parse("D895BED5-FB48-42AC-BB26-D1B72324AE44"));
+                .FirstOrDefaultAsync( x=>x.AccountProfile.UserId == _currentUserService.UserId);
             result.TotalAmount = request.HasWon ? request.Amount + result.TotalAmount : result.TotalAmount - request.Amount;
             if(result.TotalAmount < 0) {
                 throw new ValidationException(ResponseMessageConstants.CurrencyLowerThanZero);

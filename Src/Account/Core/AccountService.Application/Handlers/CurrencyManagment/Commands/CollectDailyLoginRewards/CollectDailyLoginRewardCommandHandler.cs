@@ -1,4 +1,5 @@
 ﻿using AccountService.Application.Common.Interfaces.Repository;
+using AccountService.Application.Interfaces;
 using AccountService.Application.Interfaces.Transaction;
 using AccountService.Common.Constants;
 using AccountService.Common.Utilities;
@@ -18,13 +19,15 @@ namespace AccountService.Application.Handlers.CurrencyManagment.Commands.Collect
         readonly IRepository<AccountProfile> _accountProfileRepository;
         readonly IRepository<Currency> _currencyRepository;
         readonly ITransactionService _transactionService;
+        readonly ICurrentUserService _currentUserService;
         public CollectDailyLoginRewardCommandHandler(ILogger<CollectDailyLoginRewardCommandHandler> logger,
            IMapper mapper,
            IRepository<AccountDailyReward> rewardsRepository,
            IRepository<AccountProfileCurrency> accountCurrencyRepository,
            ITransactionService transactionService,
            IRepository<AccountProfile> accountProfileRepository,
-           IRepository<Currency> currencyRepository) {
+           IRepository<Currency> currencyRepository,
+           ICurrentUserService currentUserService) {
             _logger = logger;
             _mapper = mapper;
             _rewardsRepository = rewardsRepository;
@@ -32,6 +35,7 @@ namespace AccountService.Application.Handlers.CurrencyManagment.Commands.Collect
             _accountProfileRepository = accountProfileRepository;
             _transactionService = transactionService;
             _currencyRepository = currencyRepository;
+            _currentUserService = currentUserService;
         }
         //handle seperation
         public async Task<AccountTotalCoinsResponse> Handle(CollectDailyLoginRewardCommand request, CancellationToken cancellationToken) {
@@ -40,12 +44,12 @@ namespace AccountService.Application.Handlers.CurrencyManagment.Commands.Collect
                 throw new ValidationException(ResponseMessageConstants.DailyCurrencyAlreadyRewarded);
             }
             var accountProfile = await _accountProfileRepository.TableNoTracking.FirstOrDefaultAsync(
-                x => x.UserId == Guid.Parse("D895BED5-FB48-42AC-BB26-D1B72324AE44"));
+                x => x.UserId == _currentUserService.UserId);
 
             var result = await _accountCurrencyRepository.Table
                 .Include(x => x.AccountProfile)
-                .FirstOrDefaultAsync(x => x.AccountProfile.UserId ==
-                Guid.Parse("D895BED5-FB48-42AC-BB26-D1B72324AE44"));
+                .FirstOrDefaultAsync(x =>
+                x.AccountProfile.UserId == _currentUserService.UserId);
             AccountProfileCurrency accountCurrency = new();
             if (result == null) {
                 var currentCurrency = await _currencyRepository.TableNoTracking.FirstOrDefaultAsync();
@@ -78,7 +82,7 @@ namespace AccountService.Application.Handlers.CurrencyManagment.Commands.Collect
         private async Task<bool> IsAlreadyRewarded() {
             var isAllreadyRewarded = await _rewardsRepository.Table
                .Include(x => x.AccountProfile) //hard coded
-               .AnyAsync(x => x.AccountProfile.UserId == Guid.Parse("D895BED5-FB48-42AC-BB26-D1B72324AE44")
+               .AnyAsync(x => x.AccountProfile.UserId == _currentUserService.UserId
                && x.CreatedAt.Date == DateTime.Today);
             return isAllreadyRewarded;
         }
