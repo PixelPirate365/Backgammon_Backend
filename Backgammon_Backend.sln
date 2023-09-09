@@ -103,15 +103,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E810F8A5-8DF8-4BCD-B349-D3F0F848B1B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.Common", "Src\GameManager\Common\GameManagerService.Common\GameManagerService.Common.csproj", "{998E31CC-2057-4FD0-935B-83606F842C52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerService.Common", "Src\GameManager\Common\GameManagerService.Common\GameManagerService.Common.csproj", "{998E31CC-2057-4FD0-935B-83606F842C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.Application", "Src\GameManager\Core\GameManagerService.Application\GameManagerService.Application.csproj", "{24935019-F40C-4064-99D5-CB2F541D4108}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerService.Application", "Src\GameManager\Core\GameManagerService.Application\GameManagerService.Application.csproj", "{24935019-F40C-4064-99D5-CB2F541D4108}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.Persistence", "Src\GameManager\Infrastructure\GameManagerService.Persistence\GameManagerService.Persistence.csproj", "{C2BDEACD-A923-4696-8A41-4AFE187A709D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerService.Persistence", "Src\GameManager\Infrastructure\GameManagerService.Persistence\GameManagerService.Persistence.csproj", "{C2BDEACD-A923-4696-8A41-4AFE187A709D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerApi", "Src\GameManager\Presentation\GameManagerService.Api\GameManagerApi.csproj", "{7FCE6D39-CD70-4BAF-A44F-5EF156C685D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerApi", "Src\GameManager\Presentation\GameManagerService.Api\GameManagerApi.csproj", "{7FCE6D39-CD70-4BAF-A44F-5EF156C685D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.Domain", "Src\GameManager\Core\GameManagerService.Domain\GameManagerService.Domain.csproj", "{66CE0417-7834-4613-BD1F-ED3D65B29ED4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerService.Domain", "Src\GameManager\Core\GameManagerService.Domain\GameManagerService.Domain.csproj", "{66CE0417-7834-4613-BD1F-ED3D65B29ED4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameManager", "GameManager", "{ED12318C-CF57-4044-8352-22A07B46F12D}"
 EndProject
@@ -123,13 +123,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E03C7C5D-822D-4FE7-81C3-A876FF7E9E87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.Common.Tests", "Tests\Unit\GameManager\Common\GameManagerService.Common.Tests\GameManagerService.Common.Tests.csproj", "{9A5395AC-4ED8-4B42-B59E-B31A29FE516C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerService.Common.Tests", "Tests\Unit\GameManager\Common\GameManagerService.Common.Tests\GameManagerService.Common.Tests.csproj", "{9A5395AC-4ED8-4B42-B59E-B31A29FE516C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.Application.Tests", "Tests\Unit\GameManager\Core\GameManagerService.Application.Tests\GameManagerService.Application.Tests.csproj", "{E9FE13B9-FDC6-4A46-AC52-60EE2F397B6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerService.Application.Tests", "Tests\Unit\GameManager\Core\GameManagerService.Application.Tests\GameManagerService.Application.Tests.csproj", "{E9FE13B9-FDC6-4A46-AC52-60EE2F397B6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.Persistence.Tests", "Tests\Unit\GameManager\Infrastructure\GameManagerService.Persistence.Tests\GameManagerService.Persistence.Tests.csproj", "{FD866763-850C-40E1-A91A-F54F70562BB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerService.Persistence.Tests", "Tests\Unit\GameManager\Infrastructure\GameManagerService.Persistence.Tests\GameManagerService.Persistence.Tests.csproj", "{FD866763-850C-40E1-A91A-F54F70562BB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerApi.Tests", "Tests\Unit\GameManager\Presentation\GameManagerApi.Tests\GameManagerApi.Tests.csproj", "{DDDFC24D-1202-44B3-8778-3D2AF058DAA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerApi.Tests", "Tests\Unit\GameManager\Presentation\GameManagerApi.Tests\GameManagerApi.Tests.csproj", "{DDDFC24D-1202-44B3-8778-3D2AF058DAA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.Identity", "Src\GameManager\Infrastrcture\GameManagerService.Identity\GameManagerService.Identity.csproj", "{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -261,6 +263,10 @@ Global
 		{DDDFC24D-1202-44B3-8778-3D2AF058DAA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDDFC24D-1202-44B3-8778-3D2AF058DAA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDDFC24D-1202-44B3-8778-3D2AF058DAA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -328,6 +334,7 @@ Global
 		{E9FE13B9-FDC6-4A46-AC52-60EE2F397B6A} = {1B84D416-9C31-4B77-8298-40BF8CA8D546}
 		{FD866763-850C-40E1-A91A-F54F70562BB9} = {99FBAFB1-9CD6-40B4-B67D-2E6D4F216CD6}
 		{DDDFC24D-1202-44B3-8778-3D2AF058DAA5} = {E03C7C5D-822D-4FE7-81C3-A876FF7E9E87}
+		{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D} = {DD5E085B-A717-4B1F-AF32-23FE4ECB8F58}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2A12D44-3222-4D2F-9F09-981827CDE1F1}

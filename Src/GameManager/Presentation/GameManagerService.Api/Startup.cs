@@ -3,6 +3,7 @@ using GameManagerApi.Filters;
 using GameManagerService.Common.Settings;
 using GameManagerService.Application.Modules;
 using GameManagerService.Persistence.Modules;
+using GameManagerService.Identity.Modules;
 namespace GameManagerApi {
     public class Startup {
         public IConfiguration Configuration { get; }
@@ -20,7 +21,7 @@ namespace GameManagerApi {
             services.ConfigureApplication();
 
             services.AddPersistence(Configuration);
-           // services.AddIdentityAuthorization(Configuration);
+            services.AddIdentityAuthorization(Configuration);
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
