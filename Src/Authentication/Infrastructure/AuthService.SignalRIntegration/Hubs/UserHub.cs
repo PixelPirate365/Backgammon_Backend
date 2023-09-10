@@ -18,52 +18,27 @@ namespace AuthService.SignalRIntegration.Hubs {
             _logger = logger;
             _mediator = mediator;
         }
-        //public override Task OnConnectedAsync() {
-        //    //var userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        //    //if (!string.IsNullOrEmpty(userId)) {
-        //    //    await _mediator.Send(new ChangeUserStatusCommand() { UserStatus= UserStatusEnum.LoggedIn});
-        //    //    HubConnections.AddUserConnection(userId, Context.ConnectionId);
-        //    //}
-        //    return base.OnConnectedAsync();
-        //}
-        //public async override Task OnDisconnectedAsync(Exception? exception) {
-        //    //var userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    //if (HubConnections.HasUserConnection(userId, Context.ConnectionId)) {
-        //    //    var UserConnections = HubConnections.Users[userId];
-        //    //    HubConnections.Users.Remove(userId);
-        //    //    await _mediator.Send(new ChangeUserStatusCommand() { UserStatus = UserStatusEnum.LoggedOut});
-        //    //    if (UserConnections.Any())
-        //    //        HubConnections.Users.Add(userId, UserConnections);
-
-        //    //}
-        //    //if (!string.IsNullOrEmpty(userId)) {
-        //    //    HubConnections.AddUserConnection(userId, Context.ConnectionId);
-        //    //}
-        //    await base.OnDisconnectedAsync(exception);
-        //}
-
-
-        public override Task OnConnectedAsync()
+        public async override Task OnConnectedAsync()
         {
             var userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (!string.IsNullOrEmpty(userId))
             {
-                //await _mediator.Send(new ChangeUserStatusCommand() { UserStatus = UserStatusEnum.LoggedIn }).GetAwaiter().GetResult();
+                await _mediator.Send(new ChangeUserStatusCommand() { UserStatus = UserStatusEnum.LoggedIn });
                 HubConnections.AddUserConnection(userId, Context.ConnectionId);
             }
-            return base.OnConnectedAsync();
+            await base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnectedAsync(Exception exception)
+        public async override Task OnDisconnectedAsync(Exception exception)
         {
             var userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (HubConnections.HasUserConnection(userId, Context.ConnectionId))
             {
                 var UserConnections = HubConnections.Users[userId];
                 HubConnections.Users.Remove(userId);
-                //await _mediator.Send(new ChangeUserStatusCommand() { UserStatus = UserStatusEnum.LoggedOut });
+                await _mediator.Send(new ChangeUserStatusCommand() { UserStatus = UserStatusEnum.LoggedOut });
                 if (UserConnections.Any())
                     HubConnections.Users.Add(userId, UserConnections);
 
@@ -72,7 +47,7 @@ namespace AuthService.SignalRIntegration.Hubs {
             {
                 HubConnections.AddUserConnection(userId, Context.ConnectionId);
             }
-            return base.OnDisconnectedAsync(exception);
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }
