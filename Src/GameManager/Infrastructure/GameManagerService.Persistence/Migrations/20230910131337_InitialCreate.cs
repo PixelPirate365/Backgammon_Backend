@@ -16,7 +16,7 @@ namespace GameManagerService.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PlayerColor = table.Column<int>(type: "int", nullable: false),
                     TotalWin = table.Column<int>(type: "int", nullable: false),
                     TotalLose = table.Column<int>(type: "int", nullable: false),
@@ -51,14 +51,12 @@ namespace GameManagerService.Persistence.Migrations
                         name: "FK_FriendGameRequests_Players_PlayerRecieverId",
                         column: x => x.PlayerRecieverId,
                         principalTable: "Players",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_FriendGameRequests_Players_PlayerSenderId",
                         column: x => x.PlayerSenderId,
                         principalTable: "Players",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -107,14 +105,12 @@ namespace GameManagerService.Persistence.Migrations
                         name: "FK_MatchMakings_Players_PlayerSenderId",
                         column: x => x.PlayerSenderId,
                         principalTable: "Players",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_MatchMakings_Players_RandomMatchMakerId",
                         column: x => x.RandomMatchMakerId,
                         principalTable: "Players",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -144,14 +140,12 @@ namespace GameManagerService.Persistence.Migrations
                         name: "FK_GamePlayers_Players_PlayerOneId",
                         column: x => x.PlayerOneId,
                         principalTable: "Players",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_GamePlayers_Players_PlayerTwoId",
                         column: x => x.PlayerTwoId,
                         principalTable: "Players",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

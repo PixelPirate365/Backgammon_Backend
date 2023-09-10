@@ -288,7 +288,7 @@ namespace GameManagerService.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AccountId")
+                    b.Property<Guid>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -322,15 +322,15 @@ namespace GameManagerService.Persistence.Migrations
             modelBuilder.Entity("GameManagerService.Domain.Entities.FriendGameRequest", b =>
                 {
                     b.HasOne("GameManagerService.Domain.Entities.Player", "PlayerReciever")
-                        .WithMany()
+                        .WithMany("SenderFriendGameRequests")
                         .HasForeignKey("PlayerRecieverId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GameManagerService.Domain.Entities.Player", "PlayerSender")
-                        .WithMany()
+                        .WithMany("RecieverFriendGameRequests")
                         .HasForeignKey("PlayerSenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("PlayerReciever");
@@ -354,15 +354,15 @@ namespace GameManagerService.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("GameManagerService.Domain.Entities.Player", "PlayerOne")
-                        .WithMany()
+                        .WithMany("PlayerTwoGamePlays")
                         .HasForeignKey("PlayerOneId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GameManagerService.Domain.Entities.Player", "PlayerTwo")
-                        .WithMany()
+                        .WithMany("PlayerOneGamePlays")
                         .HasForeignKey("PlayerTwoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Game");
@@ -394,15 +394,15 @@ namespace GameManagerService.Persistence.Migrations
             modelBuilder.Entity("GameManagerService.Domain.Entities.MatchMaking", b =>
                 {
                     b.HasOne("GameManagerService.Domain.Entities.Player", "PlayerSender")
-                        .WithMany()
+                        .WithMany("RandomMatchMakingRequests")
                         .HasForeignKey("PlayerSenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GameManagerService.Domain.Entities.Player", "RandomMatchMaker")
-                        .WithMany()
+                        .WithMany("SenderMatchMakingRequests")
                         .HasForeignKey("RandomMatchMakerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("PlayerSender");
@@ -436,6 +436,18 @@ namespace GameManagerService.Persistence.Migrations
             modelBuilder.Entity("GameManagerService.Domain.Entities.Player", b =>
                 {
                     b.Navigation("Games");
+
+                    b.Navigation("PlayerOneGamePlays");
+
+                    b.Navigation("PlayerTwoGamePlays");
+
+                    b.Navigation("RandomMatchMakingRequests");
+
+                    b.Navigation("RecieverFriendGameRequests");
+
+                    b.Navigation("SenderFriendGameRequests");
+
+                    b.Navigation("SenderMatchMakingRequests");
                 });
 #pragma warning restore 612, 618
         }
