@@ -15,7 +15,7 @@ namespace AuthApi {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>());
-            //services.AddSignalR();
+            services.AddSignalR();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.ConfigureApplication();
             services.AddIdentityAuthorization(Configuration);
