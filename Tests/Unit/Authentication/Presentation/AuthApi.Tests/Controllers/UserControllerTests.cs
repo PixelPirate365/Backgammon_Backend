@@ -1,24 +1,22 @@
 ﻿using AuthApi.Controllers;
+using AuthService.Application.Handlers.User.Commands.AuthenticateUser;
 using AuthService.Application.Handlers.User.Commands.ChangeUserPassword;
 using AuthService.Application.Handlers.User.Commands.CreateUser;
 using AuthService.Application.Handlers.User.Commands.DeleteUser;
 using AuthService.Application.Handlers.User.Commands.RefreshUserToken;
-using AuthService.Application.Handlers.User.Queries.AuthenticateUser;
 using AuthService.Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 
-namespace AuthApi.Tests.Controllers
-{
+namespace AuthApi.Tests.Controllers {
     public class UserControllerTests {
         private readonly UserController _controller;
         private readonly Mock<IMediator> _mediator;
         private readonly Mock<ICurrentUserService> _currentUserService;
 
-        public UserControllerTests()
-        {
+        public UserControllerTests() {
             _mediator = new Mock<IMediator>();
             _currentUserService = new Mock<ICurrentUserService>();
             _controller = new(_mediator.Object, _currentUserService.Object);
@@ -44,7 +42,7 @@ namespace AuthApi.Tests.Controllers
         [Fact]
         public async Task Login_Successfully() {
             //Arange
-            var query = new AuthenticateUserQuery();
+            var query = new AuthenticateUserCommand();
             //Act
             var result = await _controller.Login(query);
             //Assert
@@ -90,9 +88,9 @@ namespace AuthApi.Tests.Controllers
         [Fact]
         public async Task Login_Unsuccessfully() {
             //Arrange
-            _mediator.Setup(x => x.Send(It.IsAny<AuthenticateUserQuery>(), It.IsAny<CancellationToken>())).Throws(new Exception());
+            _mediator.Setup(x => x.Send(It.IsAny<AuthenticateUserCommand>(), It.IsAny<CancellationToken>())).Throws(new Exception());
             //Act
-            var result = async () => await _controller.Login(new AuthenticateUserQuery());
+            var result = async () => await _controller.Login(new AuthenticateUserCommand());
             //Assert
             var exception = await Assert.ThrowsAsync<Exception>(result);
             Assert.NotNull(exception);
@@ -102,7 +100,7 @@ namespace AuthApi.Tests.Controllers
             //Arrange
             _mediator.Setup(x => x.Send(It.IsAny<DeleteUserCommand>(), It.IsAny<CancellationToken>())).Throws(new Exception());
             //Act
-            var result = async()=> await _controller.DeleteUser();
+            var result = async () => await _controller.DeleteUser();
             //Assert
             var exception = await Assert.ThrowsAsync<Exception>(result);
             Assert.NotNull(exception);

@@ -133,6 +133,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerApi.Tests", "Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.Identity", "Src\GameManager\Infrastrcture\GameManagerService.Identity\GameManagerService.Identity.csproj", "{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService.SignalRIntegration", "Src\Authentication\Infrastructure\AuthService.SignalRIntegration\AuthService.SignalRIntegration.csproj", "{0BA9E49B-5DB9-45A0-982B-9046423E03C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -267,6 +269,10 @@ Global
 		{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BA9E49B-5DB9-45A0-982B-9046423E03C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA9E49B-5DB9-45A0-982B-9046423E03C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA9E49B-5DB9-45A0-982B-9046423E03C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA9E49B-5DB9-45A0-982B-9046423E03C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -335,6 +341,7 @@ Global
 		{FD866763-850C-40E1-A91A-F54F70562BB9} = {99FBAFB1-9CD6-40B4-B67D-2E6D4F216CD6}
 		{DDDFC24D-1202-44B3-8778-3D2AF058DAA5} = {E03C7C5D-822D-4FE7-81C3-A876FF7E9E87}
 		{3847B27E-4F63-4969-BEA9-0ECCDFE34A3D} = {DD5E085B-A717-4B1F-AF32-23FE4ECB8F58}
+		{0BA9E49B-5DB9-45A0-982B-9046423E03C8} = {9B88C3D7-2E57-43FD-B86D-D690C946346A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2A12D44-3222-4D2F-9F09-981827CDE1F1}

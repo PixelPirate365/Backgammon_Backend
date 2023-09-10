@@ -21,4 +21,8 @@
 	  <ProjectReference Include="..\..\..\..\..\Src\Authentication\Core\AuthService.Application\AuthService.Application.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Handlers\User\Queries\" />
+	</ItemGroup>
+
 </Project>

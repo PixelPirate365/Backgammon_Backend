@@ -1,9 +1,12 @@
-﻿using AuthApi.Extensions;
+﻿using AuthApi.Common.Constants;
+using AuthApi.Extensions;
 using AuthApi.Filters;
 using AuthService.Application.Modules;
 using AuthService.Identity.Modules;
 using AuthService.MessageBus.Modules;
 using AuthService.Persistence.Modules;
+using AuthService.SignalRIntegration.Hubs;
+
 namespace AuthApi {
     public class Startup {
         public IConfiguration Configuration { get; }
@@ -13,6 +16,7 @@ namespace AuthApi {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>());
+            services.AddSignalR();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.ConfigureApplication();
             services.AddIdentityAuthorization(Configuration);
@@ -33,6 +37,7 @@ namespace AuthApi {
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
+                endpoints.MapHub<UserHub>(SignalRHubConstants.UserHub);
             });
         }
     }

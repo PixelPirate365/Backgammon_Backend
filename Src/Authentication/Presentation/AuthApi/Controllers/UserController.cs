@@ -1,8 +1,9 @@
-﻿using AuthService.Application.Handlers.User.Commands.ChangeUserPassword;
+﻿using AuthService.Application.Handlers.User.Commands.AuthenticateUser;
+using AuthService.Application.Handlers.User.Commands.ChangeUserPassword;
+using AuthService.Application.Handlers.User.Commands.ChangeUserStatus;
 using AuthService.Application.Handlers.User.Commands.CreateUser;
 using AuthService.Application.Handlers.User.Commands.DeleteUser;
 using AuthService.Application.Handlers.User.Commands.RefreshUserToken;
-using AuthService.Application.Handlers.User.Queries.AuthenticateUser;
 using AuthService.Application.Interfaces;
 using AuthService.Common.Responses;
 using MediatR;
@@ -34,8 +35,8 @@ namespace AuthApi.Controllers {
 
         [AllowAnonymous]
         [HttpPost(nameof(Login))]
-        public async Task<ActionResult<Response<AuthenticationResponse>>> Login([FromBody] AuthenticateUserQuery query) {
-            var result = await _mediator.Send(query);
+        public async Task<ActionResult<Response<AuthenticationResponse>>> Login([FromBody] AuthenticateUserCommand command) {
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
         [AllowAnonymous]
@@ -56,6 +57,11 @@ namespace AuthApi.Controllers {
                 return Ok(true);
             }
             return Ok(false);
+        }
+        [HttpPost(nameof(ChangeUserStatus))]
+        public async Task<ActionResult<bool>> ChangeUserStatus() {
+            var result = await _mediator.Send(new ChangeUserStatusCommand());
+            return Ok(result);
         }
     }
 }

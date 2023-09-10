@@ -20,5 +20,9 @@
 	  <ProjectReference Include="..\..\Infrastructure\AuthService.MessageBus\AuthService.MessageBus.csproj" />
 	  <ProjectReference Include="..\AuthService.Domain\AuthService.Domain.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Handlers\User\Queries\" />
+	</ItemGroup>
 	
 </Project>
