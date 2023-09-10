@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using GameManagerService.Domain.Common;
+using GameManagerService.Domain.Entities;
 using GameManagerService.Persistence.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -11,7 +12,13 @@ using System.Transactions;
 namespace GameManagerService.Persistence.Data {
     public class ApplicationDbContext : DbContext {
 
-
+        public DbSet<Game> Games { get; set; }
+        public DbSet<GameState> GameStates { get; set; }
+        public DbSet<MatchMaking> MatchMakings { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<GamePlayers> GamePlayers { get; set; }
+        public DbSet<Move> Moves { get; set; }
+        public DbSet<FriendGameRequest> FriendGameRequests { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
         }

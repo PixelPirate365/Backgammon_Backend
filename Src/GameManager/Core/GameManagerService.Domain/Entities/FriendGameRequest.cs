@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 namespace GameManagerService.Domain.Entities {
     public class FriendGameRequest : BaseEntity, ICreationAudited, IModificationAudited {
         public Guid Id { get; set; }
-        public Guid SenderId { get; set; }
-        public Guid RecieverId { get; set; }
+        public Guid PlayerSenderId { get; set; }
+        public Guid PlayerRecieverId { get; set; }
         public int Status { get; set; } 
+        public virtual Player PlayerSender { get; set; }
+        public virtual Player PlayerReciever { get; set; }
+
     }
 }

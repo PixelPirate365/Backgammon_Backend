@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameManagerService.Domain.Entities {
     public class Move:BaseEntity,IModificationAudited,ICreationAudited {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Guid GamePlayersId { get; set; }
         public int FromPoint { get;set; }
         public int ToPoint { get; set; }
