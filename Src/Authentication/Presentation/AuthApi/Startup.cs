@@ -5,6 +5,7 @@ using AuthService.Application.Modules;
 using AuthService.Identity.Modules;
 using AuthService.MessageBus.Modules;
 using AuthService.Persistence.Modules;
+using AuthService.SignalRIntegration.Hubs;
 
 namespace AuthApi {
     public class Startup {
@@ -36,7 +37,7 @@ namespace AuthApi {
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
-                //endpoints.MapHub<UserHub>(SignalRHubConstants.UserHub);
+                endpoints.MapHub<UserHub>(SignalRHubConstants.UserHub);
             });
         }
     }
