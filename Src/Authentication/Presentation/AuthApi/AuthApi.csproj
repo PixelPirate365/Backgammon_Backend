@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -23,7 +23,6 @@
 	  <ProjectReference Include="..\..\Infrastructure\AuthService.Identity\AuthService.Identity.csproj" />
 	  <ProjectReference Include="..\..\Infrastructure\AuthService.MessageBus\AuthService.MessageBus.csproj" />
 	  <ProjectReference Include="..\..\Infrastructure\AuthService.Persistence\AuthService.Persistence.csproj" />
-	  <ProjectReference Include="..\..\Infrastructure\AuthService.SignalRIntegration\AuthService.SignalRIntegration.csproj" />
 	</ItemGroup>
 
 </Project>
