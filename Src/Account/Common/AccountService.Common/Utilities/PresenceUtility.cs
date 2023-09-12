@@ -1,6 +1,4 @@
-﻿using AccountService.Common.Dtos;
-
-namespace AccountService.Common.Utilities {
+﻿namespace AccountService.Common.Utilities {
     public class PresenceUtility {
         private static readonly Dictionary<string, List<string>> OnlineAccounts = new Dictionary<string, List<string>>();
         public Task AccountConnected(string accountId, string connectionId) {
@@ -24,6 +22,9 @@ namespace AccountService.Common.Utilities {
 
             }
             return Task.CompletedTask;
+        }
+        public Dictionary<string, List<string>> GetOnlineAccounts() {
+            return OnlineAccounts;
         }
     }
 }

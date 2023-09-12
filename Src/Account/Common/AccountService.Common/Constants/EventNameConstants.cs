@@ -8,6 +8,8 @@ namespace AccountService.Common.Constants {
     public static class EventNameConstants {
         public static string AccountProfileCreationEvent = "AccountProfileCreationEvent";
         public static string AccountSoftDeleteEvent = "AccountSoftDeleteEvent";
-
+        public static string AccountIsOnlineEvent = "AccountIsOnlineEvent";
+        public static string AccountIsOfflineEvent = "AccountIsOfflineEvent";
+            
     }
 }

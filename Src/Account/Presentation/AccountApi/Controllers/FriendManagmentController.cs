@@ -2,6 +2,7 @@
 using AccountService.Application.Handlers.FriendRequests.Commands.DeleteFriend;
 using AccountService.Application.Handlers.FriendRequests.Commands.SendFriendRequest;
 using AccountService.Application.Handlers.FriendRequests.Queries.GetFriendsRequest;
+using AccountService.Application.Handlers.Friends.Queries.GetFriends;
 using AccountService.Common.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,11 @@ namespace AccountApi.Controllers
         [HttpGet(nameof(GetFriendsRequest))]
         public async Task<ActionResult<List<GetFriendRequestResponse>>> GetFriendsRequest() {
             var result = await _mediator.Send(new GetFriendsRequestQuery());
+            return Ok(result);
+        }
+        [HttpGet(nameof(GetFriends))] // Test later
+        public async Task<ActionResult<GetFriendResponse>> GetFriends() {
+            var result = await _mediator.Send(new GetFriendsQuery());
             return Ok(result);
         }
     }

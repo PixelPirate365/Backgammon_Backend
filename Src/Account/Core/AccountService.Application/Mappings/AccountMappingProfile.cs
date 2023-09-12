@@ -2,6 +2,7 @@
 using AccountService.Application.Handlers.Account.Commands.UpdateAccountProfile;
 using AccountService.Application.Handlers.Account.Queries.GetAccountByUser;
 using AccountService.Application.Handlers.Account.Queries.GetAccountProfile;
+using AccountService.Application.Handlers.Friends.Queries.GetFriends;
 using AccountService.Common.Settings;
 using AccountService.Domain.Entities;
 using AutoMapper;
@@ -17,6 +18,9 @@ namespace AccountService.Application.Mappings
             CreateMap<UpdateAccountProfileCommand, UpdateAccountResponse>();
             CreateMap<CreateAccountProfileCommand, AccountProfile>();
             CreateMap<AccountProfile, GetAccountByUserResponse>();
+            CreateMap<AccountProfile, GetLoggedInProfile>().ForMember(dest =>dest.AccountId,
+                opt=>opt.MapFrom(
+                    src=>src.Id));
         }
     }
 }
