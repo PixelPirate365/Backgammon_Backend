@@ -12,13 +12,10 @@ using System.Threading.Tasks;
 namespace GameManagerService.SignalRIntegration.Hubs {
     public class PresenceHub : Hub {
         readonly ILogger<PresenceHub> _logger;
-        readonly IMediator _mediator;
         public PresenceHub(
-            ILogger<PresenceHub> logger,
-            IMediator mediator)
+            ILogger<PresenceHub> logger)
         {
             _logger = logger;
-            _mediator = mediator;
         }
         public async override Task OnConnectedAsync() {
             var userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
