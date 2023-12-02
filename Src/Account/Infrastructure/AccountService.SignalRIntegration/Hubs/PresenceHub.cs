@@ -10,29 +10,26 @@ namespace AccountService.SignalRIntegration.Hubs {
     public class PresenceHub : Hub {
 
         readonly ILogger<PresenceHub> _logger;
-        readonly PresenceUtility _presenceUtility;
         readonly IMediator _mediator;
         public PresenceHub(
             ILogger<PresenceHub> logger,
-            PresenceUtility presenceUtility,
             IMediator mediator) {
             _logger = logger;
-            _presenceUtility = presenceUtility;
             _mediator = mediator;
         }
         public async override Task OnConnectedAsync() {
-            await _presenceUtility.AccountConnected(Context.User.GetUserId(), Context.ConnectionId);
+            await PresenceUtility.AccountConnected(Context.User.GetUserId(), Context.ConnectionId);
             var friends = await _mediator.Send(new GetFriendsQuery());
-            var loggedInFriends = _presenceUtility.GetOnlineAccounts().Where(x =>
+            var loggedInFriends = PresenceUtility.GetOnlineAccounts().Where(x =>
             friends.OnlineFriendIds.Contains(Guid.Parse(x.Key)));
             await Clients.Users(loggedInFriends.Select(x => x.Key.ToString()).ToList())
                 .SendAsync(SignalRHubConstants.AccountIsOnlineEvent, friends.GetLoggedInProfile);
             await base.OnConnectedAsync();
         }
         public async override Task OnDisconnectedAsync(Exception exception) {
-            await _presenceUtility.AccountDisconnected(Context.User.GetUserId(), Context.ConnectionId);
+            await PresenceUtility.AccountDisconnected(Context.User.GetUserId(), Context.ConnectionId);
             var friends = await _mediator.Send(new GetFriendsQuery());
-            var loggedInFriends = _presenceUtility.GetOnlineAccounts().Where(x =>
+            var loggedInFriends = PresenceUtility.GetOnlineAccounts().Where(x =>
            friends.OnlineFriendIds.Contains(Guid.Parse(x.Key)));
             await Clients.Users(loggedInFriends.Select(x => x.Key.ToString()).ToList())
                 .SendAsync(SignalRHubConstants.AccountIsOfflineEvent, friends.GetLoggedInProfile);

@@ -1,7 +1,7 @@
 ﻿namespace AccountService.Common.Utilities {
     public class PresenceUtility {
         private static readonly Dictionary<string, List<string>> OnlineAccounts = new Dictionary<string, List<string>>();
-        public Task AccountConnected(string accountId, string connectionId) {
+        public static Task AccountConnected(string accountId, string connectionId) {
             lock (OnlineAccounts) {
                 if (OnlineAccounts.ContainsKey(accountId)) {
                     OnlineAccounts[accountId].Add(connectionId);
@@ -12,7 +12,7 @@
             }
             return Task.CompletedTask;
         }
-        public Task AccountDisconnected(string accountId, string connectionId) {
+        public static Task AccountDisconnected(string accountId, string connectionId) {
             lock (OnlineAccounts) {
                 if (!OnlineAccounts.ContainsKey(accountId)) return Task.CompletedTask;
                 OnlineAccounts[accountId].Remove(connectionId);
@@ -23,7 +23,7 @@
             }
             return Task.CompletedTask;
         }
-        public Dictionary<string, List<string>> GetOnlineAccounts() {
+        public static Dictionary<string, List<string>> GetOnlineAccounts() {
             return OnlineAccounts;
         }
     }

@@ -6,29 +6,42 @@ using System.Threading.Tasks;
 
 namespace GameManagerService.Common.Utilities {
     public class GameHubsConnectionUtility {
-        private static readonly Dictionary<string, List<string>> OnlineAccounts = new Dictionary<string, List<string>>();
-        public Task GameHubsConnected(string accountId, string connectionId) {
-            lock (OnlineAccounts) {
-                if (OnlineAccounts.ContainsKey(accountId)) {
-                    OnlineAccounts[accountId].Add(connectionId);
+        public static Dictionary<string, List<string>> OnlineUsers = new Dictionary<string, List<string>>();
+        public static bool HasUserConnections(string userId, string connectionId) {
+            try {
+                if(OnlineUsers.ContainsKey(userId)) {
+                    return OnlineUsers[userId].Any(x =>
+                    x.Contains(connectionId));
+                }
+            }
+            catch(Exception ex) {
+                
+            }
+            return false;
+            
+        }
+        public static Task GameHubsConnected(string userId, string connectionId) {
+            lock (OnlineUsers) {
+                if (OnlineUsers.ContainsKey(userId)) {
+                    OnlineUsers[userId].Add(connectionId);
                 }
                 else {
-                    OnlineAccounts.Add(accountId, new List<string>() { connectionId });
+                    OnlineUsers.Add(userId, new List<string>() { connectionId });
                 }
             }
             return Task.CompletedTask;
         }
-        public Task GameHubsDisconnected(string accountId, string connectionId) {
-            lock (OnlineAccounts) {
-                if (!OnlineAccounts.ContainsKey(accountId)) return Task.CompletedTask;
-                OnlineAccounts[accountId].Remove(connectionId);
-                if (OnlineAccounts[accountId].Count == 0) {
-                    OnlineAccounts.Remove(accountId);
+        public static Task GameHubsDisconnected(string userId, string connectionId) {
+            lock (OnlineUsers) {
+                if (!OnlineUsers.ContainsKey(userId)) return Task.CompletedTask;
+                OnlineUsers[userId].Remove(connectionId);
+                if (OnlineUsers[userId].Count == 0) {
+                    OnlineUsers.Remove(userId);
                 }
 
             }
             return Task.CompletedTask;
         }
-        
+
     }
 }
