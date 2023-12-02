@@ -26,7 +26,7 @@ namespace AccountService.SignalRIntegration.Hubs {
             var loggedInFriends = _presenceUtility.GetOnlineAccounts().Where(x =>
             friends.OnlineFriendIds.Contains(Guid.Parse(x.Key)));
             await Clients.Users(loggedInFriends.Select(x => x.Key.ToString()).ToList())
-                .SendAsync(EventNameConstants.AccountIsOnlineEvent, friends.GetLoggedInProfile);
+                .SendAsync(SignalRHubConstants.AccountIsOnlineEvent, friends.GetLoggedInProfile);
             await base.OnConnectedAsync();
         }
         public async override Task OnDisconnectedAsync(Exception exception) {
@@ -35,7 +35,7 @@ namespace AccountService.SignalRIntegration.Hubs {
             var loggedInFriends = _presenceUtility.GetOnlineAccounts().Where(x =>
            friends.OnlineFriendIds.Contains(Guid.Parse(x.Key)));
             await Clients.Users(loggedInFriends.Select(x => x.Key.ToString()).ToList())
-                .SendAsync(EventNameConstants.AccountIsOfflineEvent, friends.GetLoggedInProfile);
+                .SendAsync(SignalRHubConstants.AccountIsOfflineEvent, friends.GetLoggedInProfile);
             await base.OnDisconnectedAsync(exception);
         }
 

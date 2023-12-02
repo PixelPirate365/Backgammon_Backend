@@ -1,9 +1,10 @@
 ﻿using GameManagerService.Domain.Common;
 
 namespace GameManagerService.Domain.Entities {
-    public class Player : BaseAuditEntity,IModificationAudited,ICreationAudited {
+    public class Player : BaseAuditEntity, IModificationAudited, ICreationAudited {
         public Guid Id { get; set; }
         public Guid AccountId { get; set; }
+        public Guid UserId { get; set; }
         public int PlayerColor { get; set; }
         public int TotalWin { get; set; }
         public int TotalLose { get; set; }
@@ -12,7 +13,7 @@ namespace GameManagerService.Domain.Entities {
         public ICollection<FriendGameRequest> RecieverFriendGameRequests { get; set; }
         public ICollection<MatchMaking> SenderMatchMakingRequests { get; set; }
         public ICollection<MatchMaking> RandomMatchMakingRequests { get; set; }
-        public ICollection <GamePlayers> PlayerOneGamePlays { get; set; }
+        public ICollection<GamePlayers> PlayerOneGamePlays { get; set; }
         public ICollection<GamePlayers> PlayerTwoGamePlays { get; set; }
 
 

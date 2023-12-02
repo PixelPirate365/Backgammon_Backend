@@ -33,7 +33,8 @@ namespace AccountApi.Consumers {
             _channel = _connection.CreateModel();
             _channel.QueueDeclare(queue: QueueName, false, false, false, arguments: null);
         }
-
+        //erlang 26.0.2
+        //3.12.4 rabbit
         protected async override Task ExecuteAsync(CancellationToken stoppingToken) {
             stoppingToken.ThrowIfCancellationRequested();
             var consumer = new EventingBasicConsumer(_channel);
