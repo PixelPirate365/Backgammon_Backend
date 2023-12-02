@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +24,10 @@ namespace GameManagerService.SignalRIntegration.Hubs {
             _gameHubsConnectionUtility = gameHubsConnectionUtility;
         }
         public async override Task OnConnectedAsync() {
-           
+            var userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!string.IsNullOrEmpty(userId)) {
+
+            }
         }
         public async override Task OnDisconnectedAsync(Exception exception) {
            
