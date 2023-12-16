@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Auth.EmailService.Models {
+﻿namespace Auth.EmailService.Models {
     public class EmailConfiguration {
         public string SenderAddress { get; set; }
         public string UserName { get; set; }

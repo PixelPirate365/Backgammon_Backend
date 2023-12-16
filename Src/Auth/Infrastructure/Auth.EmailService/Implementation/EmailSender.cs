@@ -11,7 +11,7 @@ namespace Auth.EmailService.Implementation {
             _smptpConfigurationModel = emailConfig;
         }
 
-        public Task SendAsync(UserEmailOptions userEmailOptions) {
+        public async Task SendAsync(UserEmailOptions userEmailOptions) {
             await SendEmail(userEmailOptions);
         }
         private async Task SendEmail(UserEmailOptions userEmailOptions) {
