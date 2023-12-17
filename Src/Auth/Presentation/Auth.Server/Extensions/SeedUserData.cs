@@ -18,7 +18,8 @@ namespace Auth.Server.Extensions {
             }).AddEntityFrameworkStores<UserContext>().AddDefaultTokenProviders();
             using (var serviceProvider = services.BuildServiceProvider()) {
                 using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope()) {
-
+                    CreateUser(scope, "hermoni", "or", Guid.NewGuid(), "hermoniPass", "orher365@gmail.com");
+                    CreateUser(scope, "hermoni2", "or", Guid.NewGuid(), "hermoniPass2", "orwwwe@gmail.com");
 
                 }
             }

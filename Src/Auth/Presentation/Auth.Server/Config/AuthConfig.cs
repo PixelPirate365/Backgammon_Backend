@@ -28,6 +28,8 @@ namespace Auth.Server.Config {
                 Password="hermoniPass",
                 Claims=new List<Claim>
                 {
+                    //orher365@gmail.com
+                    //orwwwe@gmail.com
                     new Claim("given_name","hermoni"),
                     new Claim("last_name","hermoni")
                 }
