@@ -1,4 +1,7 @@
-﻿using Auth.Server.Entities;
+﻿using Auth.EmailService.Implementation;
+using Auth.EmailService.Interfaces;
+using Auth.EmailService.Models;
+using Auth.Server.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -10,6 +13,10 @@ namespace Auth.Server {
             Configuration = configuration;
         }
         public void ConfigureServices(IServiceCollection services) {
+            services.AddAutoMapper(typeof(Startup));
+            var emailConfig = Configuration.GetSection(nameof(EmailConfiguration)).Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddSingleton<IEmailSender, EmailSender>();
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddControllersWithViews();
             services.AddDbContext<UserContext>(options =>
