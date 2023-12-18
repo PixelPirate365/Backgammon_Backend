@@ -8,6 +8,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    },
+    }
+    //wss://localhost:44364/Auth.Server/
   }
 }

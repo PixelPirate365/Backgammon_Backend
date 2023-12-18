@@ -13,6 +13,7 @@ namespace Auth.Server {
             Configuration = configuration;
         }
         public void ConfigureServices(IServiceCollection services) {
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
             services.AddAutoMapper(typeof(Startup));
             var emailConfig = Configuration.GetSection(nameof(EmailConfiguration)).Get<EmailConfiguration>();
             services.AddSingleton(emailConfig);
@@ -45,6 +46,11 @@ namespace Auth.Server {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; connect-src 'self' wss://localhost:44364;");
+                await next();
+            });
             app.UseStaticFiles();
             app.UseRouting();
             app.UseIdentityServer();

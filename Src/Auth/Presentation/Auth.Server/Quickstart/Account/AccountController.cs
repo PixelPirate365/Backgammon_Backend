@@ -83,7 +83,7 @@ namespace IdentityServerHost.Quickstart.UI {
         /// Handle postback from username/password login
         /// </summary>
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginInputModel model, string button) {
             // check if we are in the context of an authorization request
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
@@ -176,7 +176,7 @@ namespace IdentityServerHost.Quickstart.UI {
         /// Handle logout page postback
         /// </summary>
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //////[ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout(LogoutInputModel model) {
             // build a model so the logged out page knows what to display
             var vm = await BuildLoggedOutViewModelAsync(model.LogoutId);
@@ -214,7 +214,7 @@ namespace IdentityServerHost.Quickstart.UI {
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(UserRegistrationModel model, string returnUrl) {
             if (!ModelState.IsValid) {
                 return View(model);
@@ -268,7 +268,7 @@ namespace IdentityServerHost.Quickstart.UI {
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+      //  //[ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordModel model, string returnUrl) {
             if (!ModelState.IsValid) {
                 return View(model);
@@ -295,7 +295,7 @@ namespace IdentityServerHost.Quickstart.UI {
             return View(model);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+      //  //[ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel model, string returnUrl) {
             ViewData["ReturnUrl"] = returnUrl;
             if (!ModelState.IsValid) {

@@ -10,7 +10,7 @@ namespace Auth.EmailService.Implementation {
         public EmailSender(EmailConfiguration emailConfig) {
             _smptpConfigurationModel = emailConfig;
         }
-
+        //using mailtrap for dev
         public async Task SendAsync(UserEmailOptions userEmailOptions) {
             await SendEmail(userEmailOptions);
         }
