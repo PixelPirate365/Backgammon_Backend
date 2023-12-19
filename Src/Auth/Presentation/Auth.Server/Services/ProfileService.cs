@@ -24,7 +24,8 @@ namespace Auth.Server.Services {
         {
 
             new Claim(JwtClaimTypes.GivenName, user.FirstName),
-            new Claim(JwtClaimTypes.FamilyName, user.LastName)
+            new Claim(JwtClaimTypes.FamilyName, user.LastName),
+            new Claim(JwtClaimTypes.Email, user.Email),
 
         };
             context.IssuedClaims.AddRange(claims);
