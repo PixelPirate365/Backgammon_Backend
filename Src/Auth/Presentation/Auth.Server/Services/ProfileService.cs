@@ -2,6 +2,7 @@
 using IdentityModel;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
@@ -12,7 +13,8 @@ namespace Auth.Server.Services {
         public ProfileService(UserManager<User> userManager) {
             _userManager = userManager;
         }
-        public async Task GetProfileDataAsync(ProfileDataRequestContext context) {
+        public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+        {
             var sub = context.Subject.GetSubjectId();
             var user = await _userManager.FindByIdAsync(sub);
             if (user == null) {
@@ -29,7 +31,8 @@ namespace Auth.Server.Services {
 
         }
 
-        public  Task IsActiveAsync(IsActiveContext context) {
+        public Task IsActiveAsync(IsActiveContext context)
+        {
             return Task.CompletedTask;
         }
     }

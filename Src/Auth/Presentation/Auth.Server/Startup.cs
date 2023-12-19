@@ -3,6 +3,7 @@ using Auth.EmailService.Interfaces;
 using Auth.EmailService.Models;
 using Auth.Server.Entities;
 using Auth.Server.Services;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
