@@ -7,6 +7,10 @@ using AccountService.Common.Options.RabbitMQ;
 using AccountService.Common.Settings;
 using AccountService.Persistence.Modules;
 using AccountService.Identity.Modules;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Security.Claims;
+
 namespace AccountApi {
     public class Startup {
         public IConfiguration Configuration { get; }
@@ -16,19 +20,27 @@ namespace AccountApi {
             _env = env;
         }
         public void ConfigureServices(IServiceCollection services) {
+            var authServerSettings = Configuration.GetSection(nameof(AuthServerSettings))
+                .Get<AuthServerSettings>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, option
+                => {
+                    option.RequireHttpsMetadata = false;
+                    option.Audience = authServerSettings.Audience;
+                    option.Authority = authServerSettings.Authority;
+                });
             services.AddControllers(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>());
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             AccountApiSettings.ApiBaseUrl = Configuration[$"{nameof(AccountApiSettings)}:{nameof(AccountApiSettings.ApiBaseUrl)}"];
             AccountApiSettings.ImageRootPath = _env.WebRootPath;
-            AuthenticationApiSettings.ApiBaseUrl = Configuration[$"{nameof(AuthenticationApiSettings)}:{nameof(AuthenticationApiSettings.ApiBaseUrl)}"];
             services.AddSwaggerExtension();
             services.ConfigureApplication();
             var rabbitMQOptions = new RabbitMQOptions();
             Configuration.GetSection(nameof(RabbitMQOptions)).Bind(rabbitMQOptions);
             services.AddSingleton(rabbitMQOptions);
             services.AddPersistence(Configuration);
-            services.AddIdentityAuthorization(Configuration);
+       //     services.AddIdentityAuthorization(Configuration);
             services.AddHostedService<AccountCreationEventConsumer>();
             services.AddHostedService<AccountSoftDeleteEventConsumer>();
 
@@ -44,7 +56,7 @@ namespace AccountApi {
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseMiddleware<JwtForwardingMiddleware>();
+           // app.UseMiddleware<JwtForwardingMiddleware>();
             app.UseSwaggerExtension(Configuration);
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();

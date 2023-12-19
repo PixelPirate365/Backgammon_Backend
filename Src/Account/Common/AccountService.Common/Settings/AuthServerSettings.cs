@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AccountService.Common.Settings {
-    public static class AuthenticationApiSettings {
-        public static string ApiBaseUrl { get; set; } = null!;
+    public class AuthServerSettings {
+
+        public string Authority { get; set; }
+        public string Audience { get; set; }
+
     }
 }
