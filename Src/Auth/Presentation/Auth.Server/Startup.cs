@@ -2,6 +2,7 @@
 using Auth.EmailService.Interfaces;
 using Auth.EmailService.Models;
 using Auth.Server.Entities;
+using Auth.Server.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -13,7 +14,6 @@ namespace Auth.Server {
             Configuration = configuration;
         }
         public void ConfigureServices(IServiceCollection services) {
-            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
             services.AddAutoMapper(typeof(Startup));
             var emailConfig = Configuration.GetSection(nameof(EmailConfiguration)).Get<EmailConfiguration>();
             services.AddSingleton(emailConfig);
@@ -27,6 +27,7 @@ namespace Auth.Server {
             })
                 .AddEntityFrameworkStores<UserContext>()
                 .AddDefaultTokenProviders();
+            services.AddScoped<IProfileService, ProfileService>();
             var builder = services.AddIdentityServer(options => {
                 options.EmitStaticAudienceClaim = true;
             }).AddConfigurationStore(opt => {
@@ -35,7 +36,8 @@ namespace Auth.Server {
             }).AddOperationalStore(opt => {
                 opt.ConfigureDbContext = c => c.UseSqlServer(Configuration.GetConnectionString("OAuth"),
                 sql => sql.MigrationsAssembly(migrationAssembly));
-            }).AddAspNetIdentity<User>();
+            }).AddAspNetIdentity<User>()
+            .AddProfileService<ProfileService>();
             builder.AddDeveloperSigningCredential();
             services.Configure<DataProtectionTokenProviderOptions>(options => {
                 options.TokenLifespan = TimeSpan.FromHours(2);
@@ -46,8 +48,7 @@ namespace Auth.Server {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
-            app.Use(async (context, next) =>
-            {
+            app.Use(async (context, next) => {
                 context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; connect-src 'self' wss://localhost:44364;");
                 await next();
             });

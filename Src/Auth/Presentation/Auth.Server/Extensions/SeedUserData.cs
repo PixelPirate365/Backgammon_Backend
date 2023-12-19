@@ -40,6 +40,8 @@ namespace Auth.Server.Extensions {
                 CheckResult(result);
                 result = userManager.AddClaimsAsync(user, new Claim[]
                 {
+                    new Claim(JwtClaimTypes.Id, user.Id),
+                    new Claim(JwtClaimTypes.Email, user.Email),
                     new Claim(JwtClaimTypes.GivenName,user.FirstName),
                     new Claim(JwtClaimTypes.FamilyName,user.LastName),
 
