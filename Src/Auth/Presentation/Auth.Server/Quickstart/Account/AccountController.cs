@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using Auth.Application.Handlers.User.CreateUserProfile;
 using Auth.EmailService.Interfaces;
 using Auth.EmailService.Models;
 using Auth.Server.Entities;
@@ -13,6 +14,7 @@ using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -38,6 +40,7 @@ namespace IdentityServerHost.Quickstart.UI {
         private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IEventService _events;
         private readonly IEmailSender _emailSender;
+        private readonly IMediator _mediator;
 
 
         public AccountController(
@@ -49,7 +52,8 @@ namespace IdentityServerHost.Quickstart.UI {
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IEmailSender emailSender,
-            IMapper mapper) {
+            IMapper mapper,
+            IMediator mediator) {
             // if the TestUserStore is not in DI, then we'll just use the global users collection
             // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
             //_users = users ?? new TestUserStore(TestUsers.Users);
@@ -61,6 +65,7 @@ namespace IdentityServerHost.Quickstart.UI {
             _events = events;
             _mapper = mapper;
             _emailSender = emailSender;
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -253,8 +258,14 @@ namespace IdentityServerHost.Quickstart.UI {
             if (user == null)
                 return RedirectToAction(nameof(Error), new { returnUrl });
             var result = await _userManager.ConfirmEmailAsync(user, token);
-            if (result.Succeeded)
+            if (result.Succeeded) {
+                await _mediator.Send(new CreateUserProfileCommand {
+                    UserId = Guid.Parse(user.Id),
+                    Nickname = user.UserName
+                });
+
                 return View(nameof(ConfirmEmail));
+            }
             else return RedirectToAction(nameof(Error), new { returnUrl });
         }
         [HttpGet]
@@ -268,7 +279,7 @@ namespace IdentityServerHost.Quickstart.UI {
             return View();
         }
         [HttpPost]
-      //  //[ValidateAntiForgeryToken]
+        //  //[ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordModel model, string returnUrl) {
             if (!ModelState.IsValid) {
                 return View(model);
@@ -295,7 +306,7 @@ namespace IdentityServerHost.Quickstart.UI {
             return View(model);
         }
         [HttpPost]
-      //  //[ValidateAntiForgeryToken]
+        //  //[ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel model, string returnUrl) {
             ViewData["ReturnUrl"] = returnUrl;
             if (!ModelState.IsValid) {

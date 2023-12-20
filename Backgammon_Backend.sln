@@ -139,7 +139,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.SignalRInteg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.MessageBus", "Src\Account\Infrastructure\AccountService.MessageBus\AccountService.MessageBus.csproj", "{A86D6070-DFCE-4F5A-9BB5-F7A555034D9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagerService.SignalRIntegration", "Src\GameManager\Infrastructure\GameManagerService.SignalRIntegration\GameManagerService.SignalRIntegration.csproj", "{CA6D248C-602F-45E7-B9EA-039C6620AEC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameManagerService.SignalRIntegration", "Src\GameManager\Infrastructure\GameManagerService.SignalRIntegration\GameManagerService.SignalRIntegration.csproj", "{CA6D248C-602F-45E7-B9EA-039C6620AEC4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{36DA8568-EE5A-4153-AB67-FA8B7522A424}"
 EndProject
@@ -147,13 +147,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{209C6D0C-590A-4BD9-9943-5C3443C79944}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Server", "Src\Auth\Presentation\Auth.Server\Auth.Server.csproj", "{C9B7DFB5-71AB-4405-B9CF-02645FB61ED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Server", "Src\Auth\Presentation\Auth.Server\Auth.Server.csproj", "{C9B7DFB5-71AB-4405-B9CF-02645FB61ED9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{ADC6D454-5B9E-4078-9B4E-2688BBF76FAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Common", "Src\Auth\Common\Auth.Common\Auth.Common.csproj", "{E065A19A-BA71-4DD2-B1C5-959870A41399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Common", "Src\Auth\Common\Auth.Common\Auth.Common.csproj", "{E065A19A-BA71-4DD2-B1C5-959870A41399}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.EmailService", "Src\Auth\Infrastructure\Auth.EmailService\Auth.EmailService.csproj", "{5E137F98-F03B-4EBD-B2E4-48FA1071CB95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.EmailService", "Src\Auth\Infrastructure\Auth.EmailService\Auth.EmailService.csproj", "{5E137F98-F03B-4EBD-B2E4-48FA1071CB95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.MessageBus", "Src\Auth\Infrastructure\Auth.MessageBus\Auth.MessageBus.csproj", "{EC0BC6CB-B3B0-48AE-9B9C-F63C5DE16CA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BEA43F8E-4C0C-479B-87B0-17F08A8957ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Application", "Src\Auth\Core\Auth.Application\Auth.Application.csproj", "{B1847091-74A6-42F5-B458-3341EFD0E8B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -317,6 +323,14 @@ Global
 		{5E137F98-F03B-4EBD-B2E4-48FA1071CB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E137F98-F03B-4EBD-B2E4-48FA1071CB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E137F98-F03B-4EBD-B2E4-48FA1071CB95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC0BC6CB-B3B0-48AE-9B9C-F63C5DE16CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC0BC6CB-B3B0-48AE-9B9C-F63C5DE16CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC0BC6CB-B3B0-48AE-9B9C-F63C5DE16CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC0BC6CB-B3B0-48AE-9B9C-F63C5DE16CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1847091-74A6-42F5-B458-3341EFD0E8B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1847091-74A6-42F5-B458-3341EFD0E8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1847091-74A6-42F5-B458-3341EFD0E8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1847091-74A6-42F5-B458-3341EFD0E8B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -396,6 +410,9 @@ Global
 		{ADC6D454-5B9E-4078-9B4E-2688BBF76FAE} = {36DA8568-EE5A-4153-AB67-FA8B7522A424}
 		{E065A19A-BA71-4DD2-B1C5-959870A41399} = {ADC6D454-5B9E-4078-9B4E-2688BBF76FAE}
 		{5E137F98-F03B-4EBD-B2E4-48FA1071CB95} = {209C6D0C-590A-4BD9-9943-5C3443C79944}
+		{EC0BC6CB-B3B0-48AE-9B9C-F63C5DE16CA9} = {209C6D0C-590A-4BD9-9943-5C3443C79944}
+		{BEA43F8E-4C0C-479B-87B0-17F08A8957ED} = {36DA8568-EE5A-4153-AB67-FA8B7522A424}
+		{B1847091-74A6-42F5-B458-3341EFD0E8B3} = {BEA43F8E-4C0C-479B-87B0-17F08A8957ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2A12D44-3222-4D2F-9F09-981827CDE1F1}

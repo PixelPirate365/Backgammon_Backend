@@ -6,6 +6,8 @@ using Auth.Server.Services;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Auth.MessageBus.Modules;
+using Auth.Application.Modules;
 using System.Reflection;
 
 namespace Auth.Server {
@@ -43,6 +45,8 @@ namespace Auth.Server {
             services.Configure<DataProtectionTokenProviderOptions>(options => {
                 options.TokenLifespan = TimeSpan.FromHours(2);
             });
+            services.AddMessageBus(Configuration);
+            services.ConfigureApplication();
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
