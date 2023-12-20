@@ -15,22 +15,26 @@ namespace AccountService.Application.Handlers.FriendRequests.Queries.GetFriendsR
         readonly IRepository<FriendRequest> _repository;
         readonly IMapper _mapper;
         readonly ICurrentUserService _currentUserService;
+        readonly IRepository<AccountProfile> _profileRepository;
         public GetFriendsRequestQueryHandler(
             ILogger<GetFriendsRequestQueryHandler> logger,
             IMapper mapper,
             IRepository<FriendRequest> repository,
-            ICurrentUserService currentUserService) {
+            ICurrentUserService currentUserService,
+            IRepository<AccountProfile> profileRepository) {
             _logger = logger;
             _mapper = mapper;
             _repository = repository;
             _currentUserService = currentUserService;
+            _profileRepository = profileRepository;
         }
 
         public async Task<List<GetFriendRequestResponse>> Handle(GetFriendsRequestQuery request, CancellationToken cancellationToken) {
             _logger.LogInformation($"{nameof(Handle)} method running in Handler: {nameof(GetFriendsRequestQueryHandler)}");
+            var currentProfile = _profileRepository.TableNoTracking.FirstOrDefault(x => x.UserId == _currentUserService.UserId);
             var result = await _repository.TableNoTracking.Include(x => x.SenderProfile)
                 .Where(x => 
-                x.RecieverProfileId == _currentUserService.UserId
+                x.RecieverProfileId == currentProfile.Id
                 && x.Status == (int)FriendRequestStatusEnum.Pending)
                 .ProjectTo<GetFriendRequestResponse>(_mapper.ConfigurationProvider)
                 .ToListAsync();

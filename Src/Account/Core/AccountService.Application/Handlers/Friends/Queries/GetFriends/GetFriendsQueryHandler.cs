@@ -33,7 +33,8 @@ namespace AccountService.Application.Handlers.Friends.Queries.GetFriends {
         public async Task<GetFriendResponse> Handle(GetFriendsQuery request, CancellationToken cancellationToken) {
             _logger.LogInformation($"{nameof(Handle)} method running in Handler: {nameof(GetFriendsQueryHandler)}");
             var onlineFriendIds = await _friendRequestRepository.Table.Where(x =>
-            x.SenderProfile.UserId == _currentUserService.UserId && x.Status == (int)FriendRequestStatusEnum.Accepted)
+          ( x.RecieverProfile.UserId == _currentUserService.UserId
+            || x.SenderProfile.UserId == _currentUserService.UserId ) && x.Status == (int)FriendRequestStatusEnum.Accepted)
                 .Select(x => x.RecieverProfile.UserId).ToListAsync();
             var accountProfile = await _accountProfileRepository.TableNoTracking.Where(x => x.UserId == _currentUserService.UserId)
                 .ProjectTo<GetLoggedInProfile>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
