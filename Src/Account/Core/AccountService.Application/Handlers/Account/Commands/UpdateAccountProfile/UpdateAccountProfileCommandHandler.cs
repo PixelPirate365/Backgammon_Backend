@@ -39,20 +39,22 @@ namespace AccountService.Application.Handlers.Account.Commands.UpdateAccountProf
             var accountProfile = await _repository.Table.FirstOrDefaultAsync(x=>x.UserId == _currentUserService.UserId);
             using (var fileTrans = _transactionService.CreateAsyncTransactionScope())
             {
-                var mapAccountProfile = _mapper.Map<AccountProfile>(accountProfile);
-                if (mapAccountProfile.Image != null)
+                if (accountProfile.Image != null)
                 {
-                    ImageHelper.DeleteImage(mapAccountProfile.Image);
+                    ImageHelper.DeleteImage(accountProfile.Image);
                 }
-                accountProfile.Image = ImageHelper.SaveImage(request.Image);
+               var imagePath = accountProfile.Image = ImageHelper.SaveImage(request.Image);
+                var updateAccountProfile = _mapper.Map(request,accountProfile);
                 using (var trans = _transactionService.CreateAsyncTransactionScope())
                 {
+                    accountProfile.Image = imagePath;
                     await _repository.Update(accountProfile);
                     trans.Complete();
                 }
                 fileTrans.Complete();
             }
             var result = _mapper.Map<UpdateAccountResponse>(request);
+            result.Image = accountProfile.Image;
             _logger.LogInformation($"{nameof(Handle)} method completed in Handler: {nameof(GetAccountProfileQueryHandler)}");
             return result;
         }

@@ -17,6 +17,7 @@ namespace AccountService.Application.Mappings
                     src => $"{AccountApiSettings.ApiBaseUrl}{src.Image}"));
             CreateMap<UpdateAccountProfileCommand, UpdateAccountResponse>();
             CreateMap<CreateAccountProfileCommand, AccountProfile>();
+            CreateMap<UpdateAccountProfileCommand, AccountProfile>();
             CreateMap<AccountProfile, GetAccountByUserResponse>();
             CreateMap<AccountProfile, GetLoggedInProfile>().ForMember(dest =>dest.AccountId,
                 opt=>opt.MapFrom(
