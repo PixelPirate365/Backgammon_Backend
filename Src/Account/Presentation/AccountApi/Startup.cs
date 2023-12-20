@@ -40,7 +40,7 @@ namespace AccountApi {
             Configuration.GetSection(nameof(RabbitMQOptions)).Bind(rabbitMQOptions);
             services.AddSingleton(rabbitMQOptions);
             services.AddPersistence(Configuration);
-       //     services.AddIdentityAuthorization(Configuration);
+            services.AddIdentityAuthorization(Configuration);
             services.AddHostedService<AccountCreationEventConsumer>();
             services.AddHostedService<AccountSoftDeleteEventConsumer>();
 
