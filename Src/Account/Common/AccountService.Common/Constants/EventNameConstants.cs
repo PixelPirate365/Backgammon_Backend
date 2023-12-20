@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccountService.Common.Constants {
     public static class EventNameConstants {
-        public static string AccountProfileCreationEvent = "AccountProfileCreationEvent";
+        public static string UserProfileCreationEvent = "UserProfileCreationEvent";
         public static string AccountSoftDeleteEvent = "AccountSoftDeleteEvent";
         public static string ProfileCreationEvent = "ProfileCreationEvent";
             

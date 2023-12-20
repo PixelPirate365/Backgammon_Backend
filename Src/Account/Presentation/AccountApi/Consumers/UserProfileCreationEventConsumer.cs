@@ -11,14 +11,14 @@ using System.Text;
 using System.Threading.Channels;
 
 namespace AccountApi.Consumers {
-    public class AccountCreationEventConsumer : BackgroundService {
-        public string QueueName => EventNameConstants.AccountProfileCreationEvent;
-        readonly ILogger<AccountCreationEventConsumer> _logger; 
+    public class UserProfileCreationEventConsumer : BackgroundService {
+        public string QueueName => EventNameConstants.UserProfileCreationEvent;
+        readonly ILogger<UserProfileCreationEventConsumer> _logger; 
         IConnection _connection;
         readonly IModel _channel;
         readonly IMediator _mediator;
-        public AccountCreationEventConsumer(
-            ILogger<AccountCreationEventConsumer> logger,
+        public UserProfileCreationEventConsumer(
+            ILogger<UserProfileCreationEventConsumer> logger,
             RabbitMQOptions rabbitMQOptions,
             IMediator mediator)
         {
@@ -40,15 +40,15 @@ namespace AccountApi.Consumers {
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += (ch, ea) => {
                 var content = Encoding.UTF8.GetString(ea.Body.ToArray());
-                UserAccountEventModel checkoutHeaderDto = JsonConvert.DeserializeObject<UserAccountEventModel>(content);
+                UserProfileEventModel checkoutHeaderDto = JsonConvert.DeserializeObject<UserProfileEventModel>(content);
                 HandleMessage(checkoutHeaderDto).GetAwaiter().GetResult();
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
             _channel.BasicConsume(QueueName, false, consumer);  
         }
-        private async Task HandleMessage(UserAccountEventModel account) {
+        private async Task HandleMessage(UserProfileEventModel account) {
             CreateAccountProfileCommand command = new() {
-                UserId = account.Id,
+                UserId = account.UserId,
                 Nickname = account.Username
             };
             await _mediator.Send(command);

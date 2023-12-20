@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AccountService.Common.EventModels {
-    public class UserAccountEventModel {
-        public Guid Id { get; set; }
+    public class UserProfileEventModel {
+        public Guid UserId { get; set; }
         public string? Email { get; set; }
         public string? Username { get; set; }
     }

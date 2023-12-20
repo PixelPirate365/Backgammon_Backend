@@ -41,7 +41,7 @@ namespace AccountApi {
             services.AddSingleton(rabbitMQOptions);
             services.AddPersistence(Configuration);
             services.AddIdentityAuthorization(Configuration);
-            services.AddHostedService<AccountCreationEventConsumer>();
+            services.AddHostedService<UserProfileCreationEventConsumer>();
             services.AddHostedService<AccountSoftDeleteEventConsumer>();
 
         }
