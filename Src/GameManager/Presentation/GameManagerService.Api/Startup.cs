@@ -13,10 +13,17 @@ namespace GameManagerApi {
             _env = env;
         }
         public void ConfigureServices(IServiceCollection services) {
+            var authServerSettings = Configuration.GetSection(nameof(AuthServerSettings))
+                .Get<AuthServerSettings>();
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", opt => {
+                    opt.RequireHttpsMetadata = false;
+                    opt.Authority = authServerSettings.Authority;
+                    opt.Audience = authServerSettings.Audience;
+                });
             services.AddControllers(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>());
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            AuthenticationApiSettings.ApiBaseUrl = Configuration[$"{nameof(AuthenticationApiSettings)}:{nameof(AuthenticationApiSettings.ApiBaseUrl)}"];
             services.AddSwaggerExtension();
             services.ConfigureApplication();
 
@@ -34,8 +41,7 @@ namespace GameManagerApi {
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
-            app.UseAuthorization();
-            //app.UseMiddleware<JwtForwardingMiddleware>();
+            app.UseAuthorization();  
             app.UseSwaggerExtension(Configuration);
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();

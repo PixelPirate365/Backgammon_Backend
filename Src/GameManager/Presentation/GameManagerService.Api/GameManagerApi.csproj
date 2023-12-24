@@ -26,4 +26,8 @@
     <ProjectReference Include="..\..\Infrastructure\GameManagerService.Persistence\GameManagerService.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Middlewares\" />
+  </ItemGroup>
+
 </Project>
