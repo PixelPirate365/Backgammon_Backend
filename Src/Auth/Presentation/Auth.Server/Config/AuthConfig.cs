@@ -15,14 +15,23 @@ namespace Auth.Server.Config {
             new Client
             {
                 ClientId = ClientConstants.ClientId,
+                ClientSecrets = new []{ new Secret(ClientConstants.ClientSecret.Sha512())},
+                AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+                AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, "AccountApi.scope" }
+            },
+            new Client
+            {
+                ClientId = ClientConstants.GameManagerClientId,
                 ClientSecrets =new []{ new Secret(ClientConstants.ClientSecret.Sha512())},
                 AllowedGrantTypes=GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, "AccountApi.scope" }
+                AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId,"GameManager.scope"}
             }
+
         };
         public static IEnumerable<ApiScope> ApiScopes() => new List<ApiScope>
         {
-            new ApiScope("AccountApi.scope","Account Api")
+            new ApiScope("AccountApi.scope","Account Api"),
+            new ApiScope("GameManager.scope","GameManager Api")
 
         };
         public static IEnumerable<ApiResource> ApiResources() => new List<ApiResource>
@@ -30,6 +39,10 @@ namespace Auth.Server.Config {
             new ApiResource("AccountApi","Account Api")
             {
                 Scopes={"AccountApi.scope"}
+            },
+            new ApiResource("GameManagerApi","GameManager Api")
+            {
+                Scopes={"GameManager.scope"}
             }
         };
         public static List<TestUser> TestUsers() => new List<TestUser> {

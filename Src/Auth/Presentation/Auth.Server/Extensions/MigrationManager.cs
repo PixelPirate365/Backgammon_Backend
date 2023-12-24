@@ -12,12 +12,14 @@ namespace Auth.Server.Extensions {
                     try {
 
                         context.Database.Migrate();
-                        if (!context.Clients.Any()) {
-                            foreach (var client in AuthConfig.Clients()) {
-                                context.Clients.Add(client.ToEntity());
-                            }
-                            context.SaveChanges();
+                        var clients = context.Clients.ToList();
+                        var newClients = AuthConfig.Clients().Where(x => !clients.Select(x => x.ClientId).Contains(x.ClientId)).ToList();
+
+                        foreach (var client in newClients) {
+                            context.Clients.Add(client.ToEntity());
                         }
+                        context.SaveChanges();
+
                         if (!context.IdentityResources.Any()) {
                             foreach (var dentityResource in AuthConfig.IdentityResources()) {
                                 context.IdentityResources.Add(dentityResource.ToEntity());
@@ -27,7 +29,7 @@ namespace Auth.Server.Extensions {
                         var apiScopes = context.ApiScopes.ToList();
                         var newApiScopes = AuthConfig.ApiScopes()
                             .Where(x => !apiScopes.Select(x => x.Name).Contains(x.Name)).ToList();
-                        foreach(var newApiScope in newApiScopes) {
+                        foreach (var newApiScope in newApiScopes) {
                             context.ApiScopes.Add(newApiScope.ToEntity());
                         }
                         context.SaveChanges();
