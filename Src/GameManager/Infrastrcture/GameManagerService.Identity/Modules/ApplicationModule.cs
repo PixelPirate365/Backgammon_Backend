@@ -12,11 +12,7 @@ using System.Threading.Tasks;
 namespace GameManagerService.Identity.Modules {
     public static class ApplicationModule {
         public static IServiceCollection AddIdentityAuthorization(this IServiceCollection services, IConfiguration configuration) {
-            var jwtSettings = configuration.GetSection(nameof(JwtSettings));
-            services.Configure<JwtSettings>(jwtSettings);
-            //fix
             services.AddTransient<ICurrentUserService, CurrentUserService>();
-            services.AddTransient<ITokenService, TokenService>();
             return services;
         }
     }
