@@ -4,6 +4,8 @@ using GameManagerService.Common.Settings;
 using GameManagerService.Application.Modules;
 using GameManagerService.Persistence.Modules;
 using GameManagerService.Identity.Modules;
+using GameManagerService.Common.Options.RabbitMQ;
+
 namespace GameManagerApi {
     public class Startup {
         public IConfiguration Configuration { get; }
@@ -26,7 +28,9 @@ namespace GameManagerApi {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSwaggerExtension();
             services.ConfigureApplication();
-
+            var rabbitMQOptions = new RabbitMQOptions();
+            Configuration.GetSection(nameof(RabbitMQOptions)).Bind(rabbitMQOptions);
+            services.AddSingleton(rabbitMQOptions);
             services.AddPersistence(Configuration);
             services.AddIdentityAuthorization(Configuration);
 

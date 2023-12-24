@@ -10,8 +10,8 @@ namespace GameManagerApi.Controllers {
 
             _mediator = mediator;
         }
-        [HttpPost(nameof(SendFriendRequest))]
-        public async Task<ActionResult<bool>> SendFriendRequest([FromBody] SendGameRequestCommand command) {
+        [HttpPost(nameof(SendGameRequest))]
+        public async Task<ActionResult<bool>> SendGameRequest([FromBody] SendGameRequestCommand command) {
             var result = await _mediator.Send(command);
             return Ok(result);
         }
