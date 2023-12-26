@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using GameManagerService.Application.Behaviours;
+using GameManagerService.Application.Mappings;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -17,7 +18,9 @@ namespace GameManagerService.Application.Modules {
             return services;
         }
         private static IServiceCollection AddApplication(this IServiceCollection services) {
+            var playerMappingProfile = MapperConfigurationProfile.PlayerMappingProfile();
             var mappingConfig = new MapperConfiguration(mc => {
+                mc.AddProfile(playerMappingProfile);
             });
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
