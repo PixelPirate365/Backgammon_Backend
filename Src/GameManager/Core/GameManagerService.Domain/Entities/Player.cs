@@ -5,7 +5,7 @@ namespace GameManagerService.Domain.Entities {
         public Guid Id { get; set; }
         public Guid AccountId { get; set; }
         public Guid UserId { get; set; }
-        public int PlayerColor { get; set; }
+        public string PlayerColor { get; set; }
         public int TotalWin { get; set; }
         public int TotalLose { get; set; }
         public ICollection<Game> Games { get; set; }

@@ -5,6 +5,7 @@ using GameManagerService.Application.Modules;
 using GameManagerService.Persistence.Modules;
 using GameManagerService.Identity.Modules;
 using GameManagerService.Common.Options.RabbitMQ;
+using GameManagerApi.Consumers;
 
 namespace GameManagerApi {
     public class Startup {
@@ -32,7 +33,9 @@ namespace GameManagerApi {
             Configuration.GetSection(nameof(RabbitMQOptions)).Bind(rabbitMQOptions);
             services.AddSingleton(rabbitMQOptions);
             services.AddPersistence(Configuration);
+
             services.AddIdentityAuthorization(Configuration);
+            services.AddHostedService<PlayerCreationEventConsumer>();
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {

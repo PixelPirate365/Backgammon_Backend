@@ -18,12 +18,10 @@ namespace GameManagerApi.Consumers {
 
         public PlayerCreationEventConsumer(
             ILogger<PlayerCreationEventConsumer> logger,
-            IModel channel,
             IMediator mediator,
             RabbitMQOptions rabbitMQOptions)
         {
             _logger = logger;
-            _channel = channel;
             _mediator = mediator;
             var factory = new ConnectionFactory {
                 HostName = rabbitMQOptions.HostName,

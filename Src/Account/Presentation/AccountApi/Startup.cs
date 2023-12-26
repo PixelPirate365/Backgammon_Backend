@@ -10,6 +10,7 @@ using AccountService.Identity.Modules;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Claims;
+using AccountService.MessageBus.Modules;
 
 namespace AccountApi {
     public class Startup {
@@ -41,6 +42,7 @@ namespace AccountApi {
             services.AddSingleton(rabbitMQOptions);
             services.AddPersistence(Configuration);
             services.AddIdentityAuthorization(Configuration);
+            services.AddMessageBus(Configuration);
             services.AddHostedService<UserProfileCreationEventConsumer>();
             services.AddHostedService<AccountSoftDeleteEventConsumer>();
 
