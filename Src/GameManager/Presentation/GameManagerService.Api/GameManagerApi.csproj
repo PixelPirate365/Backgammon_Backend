@@ -23,7 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\GameManagerService.Common\GameManagerService.Common.csproj" />
     <ProjectReference Include="..\..\Core\GameManagerService.Application\GameManagerService.Application.csproj" />
-    <ProjectReference Include="..\..\Infrastrcture\GameManagerService.Identity\GameManagerService.Identity.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\GameManagerService.Identity\GameManagerService.Identity.csproj" />
     <ProjectReference Include="..\..\Infrastructure\GameManagerService.Persistence\GameManagerService.Persistence.csproj" />
   </ItemGroup>
 

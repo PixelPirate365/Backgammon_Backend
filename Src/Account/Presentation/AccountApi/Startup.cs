@@ -1,18 +1,16 @@
 ﻿using AccountApi.Consumers;
 using AccountApi.Extensions;
 using AccountApi.Filters;
-using AccountApi.Middlewares;
 using AccountService.Application.Modules;
 using AccountService.Common.Options.RabbitMQ;
 using AccountService.Common.Settings;
 using AccountService.Persistence.Modules;
 using AccountService.Identity.Modules;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Security.Claims;
 using AccountService.MessageBus.Modules;
 
-namespace AccountApi {
+namespace AccountApi
+{
     public class Startup {
         public IConfiguration Configuration { get; }
         private readonly IWebHostEnvironment _env;
