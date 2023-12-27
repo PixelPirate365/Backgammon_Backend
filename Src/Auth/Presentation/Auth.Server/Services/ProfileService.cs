@@ -4,6 +4,7 @@ using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
+using System.Data;
 using System.Security.Claims;
 
 namespace Auth.Server.Services {
@@ -17,6 +18,7 @@ namespace Auth.Server.Services {
         {
             var sub = context.Subject.GetSubjectId();
             var user = await _userManager.FindByIdAsync(sub);
+            var roles = await _userManager.GetRolesAsync(user);
             if (user == null) {
                 return;
             };
@@ -25,6 +27,7 @@ namespace Auth.Server.Services {
 
             new Claim(JwtClaimTypes.GivenName, user.FirstName),
             new Claim(JwtClaimTypes.FamilyName, user.LastName),
+            new Claim(JwtClaimTypes.Role,roles.FirstOrDefault()),
             new Claim(JwtClaimTypes.Email, user.Email),
 
         };

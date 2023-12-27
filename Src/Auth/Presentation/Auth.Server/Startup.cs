@@ -1,13 +1,14 @@
-﻿using Auth.EmailService.Implementation;
+﻿using Auth.Application.Modules;
+using Auth.EmailService.Implementation;
 using Auth.EmailService.Interfaces;
 using Auth.EmailService.Models;
+using Auth.MessageBus.Modules;
 using Auth.Server.Entities;
+using Auth.Server.Interfaces;
 using Auth.Server.Services;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Auth.MessageBus.Modules;
-using Auth.Application.Modules;
 using System.Reflection;
 
 namespace Auth.Server {
@@ -23,6 +24,7 @@ namespace Auth.Server {
             services.AddSingleton<IEmailSender, EmailSender>();
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddControllersWithViews();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddDbContext<UserContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("OAuthIdentity")));
             services.AddIdentity<User, IdentityRole>(option => {
@@ -30,6 +32,7 @@ namespace Auth.Server {
             })
                 .AddEntityFrameworkStores<UserContext>()
                 .AddDefaultTokenProviders();
+            services.AddScoped<RoleManager<IdentityRole>>();
             services.AddScoped<IProfileService, ProfileService>();
             var builder = services.AddIdentityServer(options => {
                 options.EmitStaticAudienceClaim = true;

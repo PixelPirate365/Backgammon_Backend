@@ -241,6 +241,7 @@ namespace IdentityServerHost.Quickstart.UI {
             return Redirect(nameof(SuccessRegistration));
 
         }
+
         [HttpGet]
         public IActionResult SuccessRegistration() {
             return View();

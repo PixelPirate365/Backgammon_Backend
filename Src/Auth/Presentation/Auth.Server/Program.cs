@@ -1,5 +1,7 @@
 using Auth.Server;
 using Auth.Server.Extensions;
+using Auth.Server.Interfaces;
+using Auth.Server.Services;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -23,6 +25,9 @@ public class Program {
     }
     public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+        .ConfigureServices((hostContext ,services ) => {
+            //services.AddScoped<ICurrentUserService, CurrentUserService>();
+        })
             .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder => {
                     webBuilder.UseStartup<Startup>();
