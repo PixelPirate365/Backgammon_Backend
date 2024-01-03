@@ -20,6 +20,11 @@ namespace Auth.Server.Entities {
         }
         protected override void OnModelCreating(ModelBuilder builder) {
             base.OnModelCreating(builder);
+            foreach (var entityType in builder.Model.GetEntityTypes()) {
+                ConfigureGlobalFiltersMethodInfo
+                    .MakeGenericMethod(entityType.ClrType)
+                    .Invoke(this, new object[] { builder, entityType });
+            }
         }
         private static void CancelDeletionForSoftDelete(EntityEntry entry) {
             if (entry.Entity is not ISoftDelete) {

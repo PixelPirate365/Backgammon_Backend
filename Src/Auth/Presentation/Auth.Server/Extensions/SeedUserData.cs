@@ -1,6 +1,7 @@
 ﻿using Auth.Server.Entities;
 using Auth.Server.Interfaces;
 using Auth.Server.Services;
+using FluentAssertions.Common;
 using IdentityModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ namespace Auth.Server.Extensions {
                 using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope()) {
                     CreateRoles(scope);
                     CreateUser(scope, "hermoni", "or", Guid.NewGuid(), "hermoniPass", "orher365@gmail.com", "Admin");
-                    CreateUser(scope, "hermoni2", "or", Guid.NewGuid(), "hermoniPass2", "orwwwe@gmail.com", "User");
+                 
                 }
             }
         }
@@ -44,6 +45,7 @@ namespace Auth.Server.Extensions {
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
             var user = userManager.FindByEmailAsync(email).Result;
             if (user is null) {
+
                 user = new User() {
                     UserName = email,
                     Email = email,

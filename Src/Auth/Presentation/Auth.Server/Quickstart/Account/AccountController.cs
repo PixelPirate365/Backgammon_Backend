@@ -347,6 +347,11 @@ namespace IdentityServerHost.Quickstart.UI {
                 .ProjectTo<GetUserModel>(_mapper.ConfigurationProvider).ToListAsync();
             return View(users);
         }
+        public async Task<IActionResult> DeleteUser(string userId) {
+            var user = await _userRepository.Table.FirstOrDefaultAsync(x => x.Id == userId);
+            await _userRepository.Delete(user);
+            return RedirectToAction(nameof(GetAllUsers));
+        }
         /*****************************************/
         /* helper APIs for the AccountController */
         /*****************************************/
