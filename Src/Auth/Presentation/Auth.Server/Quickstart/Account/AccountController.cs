@@ -2,12 +2,15 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using Auth.Application.Handlers.User.CreateUserProfile;
+using Auth.Application.Handlers.User.Commands.CreateUserProfile;
+using Auth.Common.Constants;
 using Auth.EmailService.Interfaces;
 using Auth.EmailService.Models;
 using Auth.Server.Entities;
+using Auth.Server.Interfaces.Repository;
 using Auth.Server.Quickstart.ViewModels;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using IdentityModel;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
@@ -19,6 +22,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 
@@ -41,6 +46,7 @@ namespace IdentityServerHost.Quickstart.UI {
         private readonly IEventService _events;
         private readonly IEmailSender _emailSender;
         private readonly IMediator _mediator;
+        private readonly IRepository<User> _userRepository;
 
 
         public AccountController(
@@ -53,7 +59,8 @@ namespace IdentityServerHost.Quickstart.UI {
             SignInManager<User> signInManager,
             IEmailSender emailSender,
             IMapper mapper,
-            IMediator mediator) {
+            IMediator mediator,
+            IRepository<User> userRepository) {
             // if the TestUserStore is not in DI, then we'll just use the global users collection
             // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
             //_users = users ?? new TestUserStore(TestUsers.Users);
@@ -66,6 +73,7 @@ namespace IdentityServerHost.Quickstart.UI {
             _mapper = mapper;
             _emailSender = emailSender;
             _mediator = mediator;
+            _userRepository = userRepository;
         }
 
         /// <summary>
@@ -329,6 +337,15 @@ namespace IdentityServerHost.Quickstart.UI {
         public IActionResult ResetPasswordConfirmation(string returnUrl) {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
+        }
+        [Authorize(Roles = RolesConstants.Admin)]
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers() {
+            var currentUserId = User.Identity.GetSubjectId();
+            var users = await _userRepository.TableNoTracking
+                .Where(x => x.Id != User.Identity.GetSubjectId())
+                .ProjectTo<GetUserModel>(_mapper.ConfigurationProvider).ToListAsync();
+            return View(users);
         }
         /*****************************************/
         /* helper APIs for the AccountController */

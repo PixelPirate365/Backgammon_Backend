@@ -5,7 +5,9 @@ using Auth.EmailService.Models;
 using Auth.MessageBus.Modules;
 using Auth.Server.Entities;
 using Auth.Server.Interfaces;
+using Auth.Server.Interfaces.Repository;
 using Auth.Server.Services;
+using Auth.Server.Services.Repository;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +34,7 @@ namespace Auth.Server {
             })
                 .AddEntityFrameworkStores<UserContext>()
                 .AddDefaultTokenProviders();
+            services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<RoleManager<IdentityRole>>();
             services.AddScoped<IProfileService, ProfileService>();
             var builder = services.AddIdentityServer(options => {

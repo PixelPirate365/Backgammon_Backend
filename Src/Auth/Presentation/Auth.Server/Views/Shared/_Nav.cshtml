@@ -24,7 +24,15 @@
                     
                     <div class="dropdown-menu">
                         <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
+                        @if (User.IsInRole("Admin")) {
+                            <a class="dropdown-item" asp-action="GetAllUsers" asp-controller="Account">
+                                Get All Users
+                            </a>
+
+                        }
                     </div>
+                    
+                    
               </li>
             </ul>
         }

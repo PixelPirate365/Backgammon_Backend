@@ -11,6 +11,7 @@ using System.Reflection;
 namespace Auth.Server.Entities {
     public class UserContext : IdentityDbContext<User> {
         private readonly ICurrentUserService _currentUserService;
+        public virtual DbSet<User> User { get; set; }
         protected virtual bool IsSoftDeleteFilterEnabled => true;
         private static readonly MethodInfo ConfigureGlobalFiltersMethodInfo = 
             typeof(UserContext).GetMethod(nameof(ConfigureGlobalFilters), BindingFlags.Instance | BindingFlags.NonPublic);

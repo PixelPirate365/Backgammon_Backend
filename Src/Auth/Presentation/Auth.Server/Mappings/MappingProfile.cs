@@ -9,6 +9,8 @@ namespace Auth.Server.Mappings {
                 .ForMember(dest =>
                 dest.UserName, opt =>
                 opt.MapFrom(src => src.Email));
+            CreateMap<User, GetUserModel>();
+                
         }
     }
 }
