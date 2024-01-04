@@ -1,7 +1,7 @@
 ﻿using GameManagerService.Domain.Common;
 
 namespace GameManagerService.Domain.Entities {
-    public class Player : BaseAuditEntity, IModificationAudited, ICreationAudited {
+    public class Player :BaseEntity, IModificationAudited, ICreationAudited, ISoftDelete {
         public Guid Id { get; set; }
         public Guid AccountId { get; set; }
         public Guid UserId { get; set; }

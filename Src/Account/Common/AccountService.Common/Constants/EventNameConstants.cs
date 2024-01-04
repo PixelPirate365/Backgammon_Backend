@@ -2,6 +2,7 @@
     public static class EventNameConstants {
         public static string UserProfileCreationEvent = nameof(UserProfileCreationEvent);
         public static string UserProfileDeletionEvent = nameof(UserProfileDeletionEvent);
+        public static string PlayerDeletionEvent = nameof(PlayerDeletionEvent);
         public static string ProfileCreationEvent = "ProfileCreationEvent";
         public static string PlayerCreationEvent = "PlayerCreationEvent";
 

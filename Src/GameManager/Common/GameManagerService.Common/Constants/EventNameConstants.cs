@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameManagerService.Common.Constants {
     public static class EventNameConstants {
-        public const string PlayerCreationEvent = "PlayerCreationEvent";
+        public const string PlayerCreationEvent = nameof(PlayerCreationEvent);
+        public const string PlayerDeletionEvent = nameof(PlayerDeletionEvent);
     }
 }

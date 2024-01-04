@@ -36,6 +36,8 @@ namespace GameManagerApi {
 
             services.AddIdentityAuthorization(Configuration);
             services.AddHostedService<PlayerCreationEventConsumer>();
+            services.AddHostedService<PlayerDeletionEventConsumer>();
+
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
