@@ -42,7 +42,7 @@ namespace AccountApi
             services.AddIdentityAuthorization(Configuration);
             services.AddMessageBus(Configuration);
             services.AddHostedService<UserProfileCreationEventConsumer>();
-            services.AddHostedService<AccountSoftDeleteEventConsumer>();
+            services.AddHostedService<UserProfileDeletionEventConsumer>();
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {

@@ -10,14 +10,14 @@ using Newtonsoft.Json;
 using AccountService.Application.Handlers.Account.Commands.DeleteAccount;
 
 namespace AccountApi.Consumers {
-    public class AccountSoftDeleteEventConsumer: BackgroundService {
-        public string QueueName => EventNameConstants.AccountSoftDeleteEvent;
-        readonly ILogger<AccountSoftDeleteEventConsumer> _logger;
+    public class UserProfileDeletionEventConsumer: BackgroundService {
+        public string QueueName => EventNameConstants.UserProfileDeletionEvent;
+        readonly ILogger<UserProfileDeletionEventConsumer> _logger;
         IConnection _connection;
         readonly IModel _channel;
         readonly IMediator _mediator;
-        public AccountSoftDeleteEventConsumer(
-            ILogger<AccountSoftDeleteEventConsumer> logger,
+        public UserProfileDeletionEventConsumer(
+            ILogger<UserProfileDeletionEventConsumer> logger,
             RabbitMQOptions rabbitMQOptions,
             IMediator mediator) {
             _logger = logger;

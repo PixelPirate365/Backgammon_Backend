@@ -3,6 +3,7 @@
 
 
 using Auth.Application.Handlers.User.Commands.CreateUserProfile;
+using Auth.Application.Handlers.User.Commands.DeleteUserProfile;
 using Auth.Common.Constants;
 using Auth.EmailService.Interfaces;
 using Auth.EmailService.Models;
@@ -256,8 +257,10 @@ namespace IdentityServerHost.Quickstart.UI {
         }
         private async Task SendEmailConfirmationLink(User user, string returnUrl) {
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var emailConfirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { token, email = user.Email, returnUrl }, Request.Scheme);
-            var message = new UserEmailOptions { ToEmails = new System.Collections.Generic.List<string> { user.Email }, Subject = "confirm email link", Body = emailConfirmationLink };
+            var emailConfirmationLink = Url.Action(nameof(ConfirmEmail), "Account", 
+                new { token, email = user.Email, returnUrl }, Request.Scheme);
+            var message = new UserEmailOptions { ToEmails = new List<string>
+            { user.Email }, Subject = "confirm email link", Body = emailConfirmationLink };
             await _emailSender.SendAsync(message);
         }
         [HttpGet]
@@ -350,6 +353,7 @@ namespace IdentityServerHost.Quickstart.UI {
         public async Task<IActionResult> DeleteUser(string userId) {
             var user = await _userRepository.Table.FirstOrDefaultAsync(x => x.Id == userId);
             await _userRepository.Delete(user);
+            await _mediator.Send(new DeleteUserProfileCommand { UserId = Guid.Parse(user.Id) });
             return RedirectToAction(nameof(GetAllUsers));
         }
         /*****************************************/
