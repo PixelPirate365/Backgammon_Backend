@@ -12,7 +12,7 @@ using System.Text;
 namespace GameManagerApi.Consumers {
     public class PlayerDeletionEventConsumer : BackgroundService {
 
-        public string QueueName => EventNameConstants.PlayerCreationEvent;
+        public string QueueName => EventNameConstants.PlayerDeletionEvent;
         readonly ILogger<PlayerDeletionEventConsumer> _logger;
         readonly IModel _channel;
         readonly IMediator _mediator;
