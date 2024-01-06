@@ -37,10 +37,13 @@ namespace GameManagerService.Application.Handlers.FriendGame.Commands.SendGameRe
 
         public async Task<Response> Handle(SendGameRequestCommand request, CancellationToken cancellationToken) {
             _logger.LogInformation($"{nameof(Handle)} method running in Handler: {nameof(SendGameRequestCommandHandler)}");
-            var map = _mapper.Map<FriendGameRequest>( request );
-            var currentPlayer = await _playerRepository.TableNoTracking.FirstOrDefaultAsync(x => x.UserId == _currentUserService.UserId, cancellationToken: cancellationToken);
-            map.PlayerSenderId = currentPlayer.Id;
-            await _friendGameRequestRepository.Add( map );
+            //var map = _mapper.Map<FriendGameRequest>( request );
+            //var currentPlayer = await _playerRepository.TableNoTracking.FirstOrDefaultAsync(
+            //x => x.UserId == _currentUserService.UserId, cancellationToken: cancellationToken);
+            //map.PlayerSenderId = currentPlayer.Id;
+            //await _friendGameRequestRepository.Add( map );
+
+
             _logger.LogInformation($"{nameof(Handle)} method completed in Handler: {nameof(SendGameRequestCommandHandler)}");
             return new Response { Successful = true, Message = MessageConstants.GameFriendRequestMessage };
         }
