@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameManagerApi.Controllers {
-    public class FriendGameRequestController :BaseController<FriendGameRequestController> {
+    public class FriendGameRequestController : BaseController<FriendGameRequestController> {
         readonly IMediator _mediator;
         public FriendGameRequestController(
             IMediator mediator) {

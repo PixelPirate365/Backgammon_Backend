@@ -1,4 +1,6 @@
-﻿using AccountService.Application.Handlers.CurrencyManagment.Queries.GetTopCurrencyAccountProfiles;
+﻿using AccountService.Application.Handlers.Account.Queries.GetAccountBalance;
+using AccountService.Application.Handlers.CurrencyManagment.Queries.GetTopCurrencyAccountProfiles;
+using AccountService.Common.EventModels;
 using AccountService.Domain.Entities;
 using AutoMapper;
 using System;
@@ -21,6 +23,13 @@ namespace AccountService.Application.Mappings {
                 .ForMember(dest=>dest.TotalAmount,
                 opt=>opt
                 .MapFrom(src=>(int)src.TotalAmount));
+            CreateMap<AccountProfileCurrency, SendRecieverBalanceModel>()
+                .ForMember(dest => dest.RecieverId,
+                opt => opt.MapFrom(src =>
+                src.AccountProfileId))
+                .ForMember(dest=> dest.BalanceAmount,
+                opt=>opt.MapFrom(
+                    src => src.TotalAmount));
         }
     }
 }

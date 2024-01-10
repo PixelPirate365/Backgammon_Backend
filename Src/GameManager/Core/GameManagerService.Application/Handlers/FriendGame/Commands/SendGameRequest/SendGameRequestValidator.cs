@@ -5,7 +5,7 @@ namespace GameManagerService.Application.Handlers.FriendGame.Commands.SendGameRe
     public class SendGameRequestValidator : BaseValidator<SendGameRequestCommand> {
         public SendGameRequestValidator() {
             RuleFor(x => x.RecieverId).Must(Validate);
-            RuleFor(x => x.CurrencyAmount).Must(ValidateAmount).When(
+            RuleFor(x => x.BetAmount).Must(ValidateAmount).When(
                 x => !x.IsFriendly);
         }
     }

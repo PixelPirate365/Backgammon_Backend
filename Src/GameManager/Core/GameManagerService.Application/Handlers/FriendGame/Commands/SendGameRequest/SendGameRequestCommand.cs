@@ -10,6 +10,6 @@ namespace GameManagerService.Application.Handlers.FriendGame.Commands.SendGameRe
     public class SendGameRequestCommand :IRequest<Response>{
         public Guid RecieverId { get; set; }
         public bool IsFriendly { get; set; }
-        public decimal? CurrencyAmount { get; set; }
+        public decimal? BetAmount { get; set; }
     }
 }

@@ -19,8 +19,10 @@ namespace GameManagerService.Application.Modules {
         }
         private static IServiceCollection AddApplication(this IServiceCollection services) {
             var playerMappingProfile = MapperConfigurationProfile.PlayerMappingProfile();
+            var recieverBalanceMappingProfile = MapperConfigurationProfile.RecieverBalanceMappingProfile();
             var mappingConfig = new MapperConfiguration(mc => {
                 mc.AddProfile(playerMappingProfile);
+                mc.AddProfile(recieverBalanceMappingProfile);
             });
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);

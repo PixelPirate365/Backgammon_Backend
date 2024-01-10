@@ -1,12 +1,12 @@
-﻿using GameManagerApi.Extensions;
+﻿using GameManagerApi.Consumers;
+using GameManagerApi.Extensions;
 using GameManagerApi.Filters;
-using GameManagerService.Common.Settings;
 using GameManagerService.Application.Modules;
-using GameManagerService.Persistence.Modules;
+using GameManagerService.Common.Settings;
 using GameManagerService.Identity.Modules;
-using GameManagerService.Common.Options.RabbitMQ;
-using GameManagerApi.Consumers;
 using GameManagerService.MessageBus.Modules;
+using GameManagerService.Persistence.Modules;
+
 namespace GameManagerApi {
     public class Startup {
         public IConfiguration Configuration { get; }
@@ -47,7 +47,7 @@ namespace GameManagerApi {
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
-            app.UseAuthorization();  
+            app.UseAuthorization();
             app.UseSwaggerExtension(Configuration);
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();

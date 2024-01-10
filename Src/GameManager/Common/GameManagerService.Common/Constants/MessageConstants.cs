@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameManagerService.Common.Constants {
     public static class MessageConstants {
-        public const string GameFriendRequestMessage = "Game Friend request was sent succefuly";
+        public const string GameFriendRequestMessage = "Game Friend request was sent successfully";
+        
     }
 }

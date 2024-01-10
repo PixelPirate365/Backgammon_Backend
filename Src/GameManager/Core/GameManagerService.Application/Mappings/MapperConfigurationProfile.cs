@@ -11,5 +11,8 @@ namespace GameManagerService.Application.Mappings {
         public static Profile PlayerMappingProfile() {
             return new PlayerMappingProfile();
         }
+        public static Profile RecieverBalanceMappingProfile() {
+            return new RecieverBalanceMappingProfile();
+        }
     }
 }

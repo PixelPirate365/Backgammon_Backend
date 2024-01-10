@@ -14,12 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\FriendGame\Queries\" />
+    <ProjectReference Include="..\..\Common\GameManagerService.Common\GameManagerService.Common.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\GameManagerService.MessageBus\GameManagerService.MessageBus.csproj" />
+    <ProjectReference Include="..\GameManagerService.Domain\GameManagerService.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\GameManagerService.Common\GameManagerService.Common.csproj" />
-    <ProjectReference Include="..\GameManagerService.Domain\GameManagerService.Domain.csproj" />
+    <Folder Include="Handlers\FriendGame\Queries\" />
+    <Folder Include="Handlers\Players\Commands\" />
   </ItemGroup>
 
 </Project>
