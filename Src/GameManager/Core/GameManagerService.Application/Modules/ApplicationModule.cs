@@ -2,6 +2,7 @@
 using FluentValidation;
 using GameManagerService.Application.Behaviours;
 using GameManagerService.Application.Mappings;
+using GameManagerService.Application.Services.SignalRSender;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -15,6 +16,7 @@ namespace GameManagerService.Application.Modules {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
             services.AddApplication();
+            services.AddScoped<ISignalRMessageSender, SignalRMessageSender>();
             return services;
         }
         private static IServiceCollection AddApplication(this IServiceCollection services) {
