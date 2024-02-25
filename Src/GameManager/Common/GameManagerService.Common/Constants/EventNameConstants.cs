@@ -10,5 +10,7 @@ namespace GameManagerService.Common.Constants {
         public const string PlayerDeletionEvent = nameof(PlayerDeletionEvent);
         public const string CheckRecieverBalanceEvent = nameof(CheckRecieverBalanceEvent);
         public const string SendRecieverBalanceEvent = nameof(SendRecieverBalanceEvent);
+        public const string NotifySenderRecieverBalanceNotAvailableEvent = nameof(NotifySenderRecieverBalanceNotAvailableEvent);
+        public const string NotifySenderRecieverBalanceAvailableEvent = nameof(NotifySenderRecieverBalanceAvailableEvent);
     }
 }

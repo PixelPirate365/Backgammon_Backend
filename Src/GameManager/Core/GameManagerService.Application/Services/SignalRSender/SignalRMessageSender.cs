@@ -1,4 +1,5 @@
-﻿using GameManagerService.Common.Dtos;
+﻿using GameManagerService.Common.Constants;
+using GameManagerService.Common.Dtos;
 using GameManagerService.Common.Responses;
 using GameManagerService.SignalRIntegration.Hubs;
 using Microsoft.AspNetCore.SignalR;
@@ -24,7 +25,7 @@ namespace GameManagerService.Application.Services.SignalRSender {
                parentMessage.Result.Message.SenderId.ToString(),
            };
             await _presenceHub.Clients.Users(users)
-                .SendAsync("NotifySenderRecieverBalanceAvailable", parentMessage.Result); //add as constant later
+                .SendAsync(EventNameConstants.NotifySenderRecieverBalanceAvailableEvent, parentMessage.Result);
 
             _logger.LogInformation(
                 $"{nameof(Handle)} method completed in Handler: {nameof(NotifySenderRecieverBalanceAvailable)}");
@@ -34,7 +35,7 @@ namespace GameManagerService.Application.Services.SignalRSender {
             _logger.LogInformation(
                 $"{nameof(Handle)} method running in Handler: {nameof(NotifySenderRecieverBalanceNotAvailable)}");
             await _presenceHub.Clients.User(parentMessage.Result.UserId.ToString())
-                .SendAsync("NotifySenderRecieverBalanceNotAvailable", parentMessage.Result); //add as constant later
+                .SendAsync(EventNameConstants.NotifySenderRecieverBalanceNotAvailableEvent, parentMessage.Result);
 
             _logger.LogInformation(
                 $"{nameof(Handle)} method completed in Handler: {nameof(NotifySenderRecieverBalanceNotAvailable)}");

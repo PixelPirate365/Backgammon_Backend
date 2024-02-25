@@ -35,6 +35,7 @@ namespace GameManagerApi {
             services.AddMessageBus(Configuration);
             services.AddHostedService<PlayerCreationEventConsumer>();
             services.AddHostedService<PlayerDeletionEventConsumer>();
+            services.AddHostedService<PlayerBalanceConsumer>();
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {

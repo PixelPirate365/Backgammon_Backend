@@ -43,6 +43,7 @@ namespace AccountApi
             services.AddMessageBus(Configuration);
             services.AddHostedService<UserProfileCreationEventConsumer>();
             services.AddHostedService<UserProfileDeletionEventConsumer>();
+            services.AddHostedService<CheckProfileBalanceConsumer>();
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {

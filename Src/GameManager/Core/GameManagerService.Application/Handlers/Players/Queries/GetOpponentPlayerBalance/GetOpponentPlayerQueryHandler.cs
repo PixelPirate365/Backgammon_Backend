@@ -1,5 +1,6 @@
 ﻿using GameManagerService.Application.Interfaces.Repository;
 using GameManagerService.Application.Services.SignalRSender;
+using GameManagerService.Common.Constants;
 using GameManagerService.Common.Dtos;
 using GameManagerService.Common.Responses;
 using GameManagerService.Domain.Entities;
@@ -32,7 +33,7 @@ namespace GameManagerService.Application.Handlers.Players.Queries.GetOpponentPla
             if (request.BalanceAmount < request.BetAmount) {
                 await _signalRMessageSender.NotifySenderRecieverBalanceNotAvailable(
                     new Response<ParentMessageDto<bool>> {
-                        Message = "Balance is not available", // add as constant later
+                        Message = MessageConstants.NotifySenderRecieverBalanceNotAvailableMessage, 
                         Result = new ParentMessageDto<bool> { Message = false, UserId = request.SenderId }
                     }
                 );
@@ -40,7 +41,7 @@ namespace GameManagerService.Application.Handlers.Players.Queries.GetOpponentPla
             else {
                 await _signalRMessageSender.NotifySenderRecieverBalanceAvailable(
                     new Response<ParentMessageDto<SenderRecieverGameBootstrapDto>>() {
-                        Message = "Balance is available",
+                        Message = MessageConstants.GameFriendRequestMessage,
                         Result = new ParentMessageDto<SenderRecieverGameBootstrapDto> {
                             Message = new SenderRecieverGameBootstrapDto {
                                 RecieverId = request.RecieverId,
